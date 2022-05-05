@@ -1,4 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `node&#x2F;cli&#x2F;src&#x2F;command.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>command.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../moonbeam_cli/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `node/cli/src/command.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>command.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../moonbeam_cli/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../moonbeam_cli/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../moonbeam_cli/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -830,7 +835,34 @@
 <span id="830">830</span>
 <span id="831">831</span>
 <span id="832">832</span>
-</pre><pre class="rust"><code><span class="comment">// Copyright 2019-2021 PureStake Inc.</span>
+<span id="833">833</span>
+<span id="834">834</span>
+<span id="835">835</span>
+<span id="836">836</span>
+<span id="837">837</span>
+<span id="838">838</span>
+<span id="839">839</span>
+<span id="840">840</span>
+<span id="841">841</span>
+<span id="842">842</span>
+<span id="843">843</span>
+<span id="844">844</span>
+<span id="845">845</span>
+<span id="846">846</span>
+<span id="847">847</span>
+<span id="848">848</span>
+<span id="849">849</span>
+<span id="850">850</span>
+<span id="851">851</span>
+<span id="852">852</span>
+<span id="853">853</span>
+<span id="854">854</span>
+<span id="855">855</span>
+<span id="856">856</span>
+<span id="857">857</span>
+<span id="858">858</span>
+<span id="859">859</span>
+</pre><pre class="rust"><code><span class="comment">// Copyright 2019-2022 PureStake Inc.</span>
 <span class="comment">// This file is part of Moonbeam.</span>
 
 <span class="comment">// Moonbeam is free software: you can redistribute it and/or modify</span>
@@ -871,58 +903,49 @@
 	<span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
 	<span class="ident">para_id</span>: <span class="ident">ParaId</span>,
 	<span class="ident">run_cmd</span>: <span class="kw-2">&amp;</span><span class="ident">RunCmd</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">sc_service::ChainSpec</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-	<span class="kw">if</span> <span class="ident">id</span>.<span class="ident">is_empty</span>() {
-		<span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;Not specific which chain to run.&quot;</span>.<span class="ident">into</span>());
-	}
+) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">sc_service::ChainSpec</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
 	<span class="prelude-val">Ok</span>(<span class="kw">match</span> <span class="ident">id</span> {
 		<span class="comment">// Moonbase networks</span>
-		<span class="string">&quot;moonbase-alpha&quot;</span> <span class="op">|</span> <span class="string">&quot;alphanet&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Box::new</span>(<span class="ident">chain_spec::RawChainSpec::from_json_bytes</span>(
+		<span class="string">&quot;moonbase-alpha&quot;</span> <span class="op">|</span> <span class="string">&quot;alphanet&quot;</span> =&gt; <span class="ident">Box::new</span>(<span class="ident">chain_spec::RawChainSpec::from_json_bytes</span>(
 			<span class="kw-2">&amp;</span><span class="macro">include_bytes!</span>(<span class="string">&quot;../../../specs/alphanet/parachain-embedded-specs-v8.json&quot;</span>)[..],
 		)<span class="question-mark">?</span>),
 		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>)]</span>
-		<span class="string">&quot;moonbase-local&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Box::new</span>(<span class="ident">chain_spec::moonbase::get_chain_spec</span>(<span class="ident">para_id</span>)),
+		<span class="string">&quot;moonbase-local&quot;</span> =&gt; <span class="ident">Box::new</span>(<span class="ident">chain_spec::moonbase::get_chain_spec</span>(<span class="ident">para_id</span>)),
 		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>)]</span>
-		<span class="string">&quot;moonbase-dev&quot;</span> <span class="op">|</span> <span class="string">&quot;dev&quot;</span> <span class="op">|</span> <span class="string">&quot;development&quot;</span> <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="string">&quot;moonbase-dev&quot;</span> <span class="op">|</span> <span class="string">&quot;dev&quot;</span> <span class="op">|</span> <span class="string">&quot;development&quot;</span> =&gt; {
 			<span class="ident">Box::new</span>(<span class="ident">chain_spec::moonbase::development_chain_spec</span>(<span class="prelude-val">None</span>, <span class="prelude-val">None</span>))
 		}
 		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;test-spec&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbeam-native&quot;</span>))]</span>
-		<span class="string">&quot;staking&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Box::new</span>(<span class="ident">chain_spec::test_spec::staking_spec</span>(<span class="ident">para_id</span>)),
+		<span class="string">&quot;staking&quot;</span> =&gt; <span class="ident">Box::new</span>(<span class="ident">chain_spec::test_spec::staking_spec</span>(<span class="ident">para_id</span>)),
 		<span class="comment">// Moonriver networks</span>
-		<span class="string">&quot;moonriver&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Box::new</span>(<span class="ident">chain_spec::RawChainSpec::from_json_bytes</span>(
+		<span class="string">&quot;moonriver&quot;</span> =&gt; <span class="ident">Box::new</span>(<span class="ident">chain_spec::RawChainSpec::from_json_bytes</span>(
 			<span class="kw-2">&amp;</span><span class="macro">include_bytes!</span>(<span class="string">&quot;../../../specs/moonriver/parachain-embedded-specs.json&quot;</span>)[..],
 		)<span class="question-mark">?</span>),
 		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonriver-native&quot;</span>)]</span>
-		<span class="string">&quot;moonriver-dev&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Box::new</span>(<span class="ident">chain_spec::moonriver::development_chain_spec</span>(<span class="prelude-val">None</span>, <span class="prelude-val">None</span>)),
+		<span class="string">&quot;moonriver-dev&quot;</span> =&gt; <span class="ident">Box::new</span>(<span class="ident">chain_spec::moonriver::development_chain_spec</span>(<span class="prelude-val">None</span>, <span class="prelude-val">None</span>)),
 		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonriver-native&quot;</span>)]</span>
-		<span class="string">&quot;moonriver-local&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Box::new</span>(<span class="ident">chain_spec::moonriver::get_chain_spec</span>(<span class="ident">para_id</span>)),
+		<span class="string">&quot;moonriver-local&quot;</span> =&gt; <span class="ident">Box::new</span>(<span class="ident">chain_spec::moonriver::get_chain_spec</span>(<span class="ident">para_id</span>)),
 
 		<span class="comment">// Moonbeam networks</span>
-		<span class="string">&quot;moonbeam&quot;</span> <span class="op">=</span><span class="op">&gt;</span> {
-			<span class="kw">return</span> <span class="prelude-val">Err</span>(
-				<span class="string">&quot;You chosen the moonbeam mainnet spec. This network is not yet available.&quot;</span>.<span class="ident">into</span>(),
-			);
-			<span class="comment">// Box::new(chain_spec::RawChainSpec::from_json_bytes(</span>
-			<span class="comment">// 	&amp;include_bytes!(&quot;../../../specs/moonbeam.json&quot;)[..],</span>
-			<span class="comment">// )?)</span>
-		}
+		<span class="string">&quot;moonbeam&quot;</span> <span class="op">|</span> <span class="string">&quot;&quot;</span> =&gt; <span class="ident">Box::new</span>(<span class="ident">chain_spec::RawChainSpec::from_json_bytes</span>(
+			<span class="kw-2">&amp;</span><span class="macro">include_bytes!</span>(<span class="string">&quot;../../../specs/moonbeam/parachain-embedded-specs.json&quot;</span>)[..],
+		)<span class="question-mark">?</span>),
 		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbeam-native&quot;</span>)]</span>
-		<span class="string">&quot;moonbeam-dev&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Box::new</span>(<span class="ident">chain_spec::moonbeam::development_chain_spec</span>(<span class="prelude-val">None</span>, <span class="prelude-val">None</span>)),
+		<span class="string">&quot;moonbeam-dev&quot;</span> =&gt; <span class="ident">Box::new</span>(<span class="ident">chain_spec::moonbeam::development_chain_spec</span>(<span class="prelude-val">None</span>, <span class="prelude-val">None</span>)),
 		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbeam-native&quot;</span>)]</span>
-		<span class="string">&quot;moonbeam-local&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Box::new</span>(<span class="ident">chain_spec::moonbeam::get_chain_spec</span>(<span class="ident">para_id</span>)),
+		<span class="string">&quot;moonbeam-local&quot;</span> =&gt; <span class="ident">Box::new</span>(<span class="ident">chain_spec::moonbeam::get_chain_spec</span>(<span class="ident">para_id</span>)),
 
 		<span class="comment">// Specs provided as json specify which runtime to use in their file name. For example,</span>
 		<span class="comment">// `moonbeam-custom.json` uses the moonbeam runtime.</span>
 		<span class="comment">// `moonbase-dev-workshop.json` uses the moonbase runtime.</span>
 		<span class="comment">// If no magic strings match, then the moonbase runtime is used by default.</span>
 		<span class="comment">// TODO explore CLI options to make this nicer. eg `--force-moonriver-runtime`</span>
-		<span class="ident">path</span> <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="ident">path</span> =&gt; {
 			<span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">std::path::PathBuf::from</span>(<span class="ident">path</span>);
 
 			<span class="kw">let</span> <span class="ident">starts_with</span> <span class="op">=</span> <span class="op">|</span><span class="ident">prefix</span>: <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">|</span> {
 				<span class="ident">path</span>.<span class="ident">file_name</span>()
-					.<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>.<span class="ident">to_str</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">starts_with</span>(<span class="kw-2">&amp;</span><span class="ident">prefix</span>)))
-					.<span class="ident">flatten</span>()
+					.<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>.<span class="ident">to_str</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">starts_with</span>(<span class="kw-2">&amp;</span><span class="ident">prefix</span>)))
 					.<span class="ident">unwrap_or</span>(<span class="bool-val">false</span>)
 			};
 
@@ -938,15 +961,15 @@
 }
 
 <span class="kw">impl</span> <span class="ident">SubstrateCli</span> <span class="kw">for</span> <span class="ident">Cli</span> {
-	<span class="kw">fn</span> <span class="ident">impl_name</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">impl_name</span>() -&gt; <span class="ident">String</span> {
 		<span class="string">&quot;Moonbeam Parachain Collator&quot;</span>.<span class="ident">into</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">impl_version</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">impl_version</span>() -&gt; <span class="ident">String</span> {
 		<span class="macro">env!</span>(<span class="string">&quot;SUBSTRATE_CLI_IMPL_VERSION&quot;</span>).<span class="ident">into</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">description</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">description</span>() -&gt; <span class="ident">String</span> {
 		<span class="macro">format!</span>(
 			<span class="string">&quot;Moonbase Parachain Collator\n\nThe command-line arguments provided first will be \
 		passed to the parachain node, while the arguments provided after -- will be passed \
@@ -956,51 +979,46 @@
 		)
 	}
 
-	<span class="kw">fn</span> <span class="ident">author</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">author</span>() -&gt; <span class="ident">String</span> {
 		<span class="macro">env!</span>(<span class="string">&quot;CARGO_PKG_AUTHORS&quot;</span>).<span class="ident">into</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">support_url</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">support_url</span>() -&gt; <span class="ident">String</span> {
 		<span class="string">&quot;https://github.com/PureStake/moonbeam/issues/new&quot;</span>.<span class="ident">into</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">copyright_start_year</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+	<span class="kw">fn</span> <span class="ident">copyright_start_year</span>() -&gt; <span class="ident">i32</span> {
 		<span class="number">2019</span>
 	}
 
-	<span class="kw">fn</span> <span class="ident">load_spec</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">sc_service::ChainSpec</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">Subcommand::PerfTest</span>(<span class="kw">_</span>)) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">subcommand</span> {
-			<span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">Box::new</span>(<span class="ident">chain_spec::moonbase::development_chain_spec</span>(
-				<span class="prelude-val">None</span>, <span class="prelude-val">None</span>,
-			)));
-		}
+	<span class="kw">fn</span> <span class="ident">load_spec</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">sc_service::ChainSpec</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
 		<span class="ident">load_spec</span>(<span class="ident">id</span>, <span class="self">self</span>.<span class="ident">run</span>.<span class="ident">parachain_id</span>.<span class="ident">unwrap_or</span>(<span class="number">1000</span>).<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">run</span>)
 	}
 
-	<span class="kw">fn</span> <span class="ident">native_runtime_version</span>(<span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">sc_service::ChainSpec</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">RuntimeVersion</span> {
+	<span class="kw">fn</span> <span class="ident">native_runtime_version</span>(<span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">sc_service::ChainSpec</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">RuntimeVersion</span> {
 		<span class="kw">match</span> <span class="ident">spec</span> {
 			<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonriver-native&quot;</span>)]</span>
-			<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="kw-2">&amp;</span><span class="ident">service::moonriver_runtime::VERSION</span>,
+			<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() =&gt; <span class="kw">return</span> <span class="kw-2">&amp;</span><span class="ident">service::moonriver_runtime::VERSION</span>,
 			<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbeam-native&quot;</span>)]</span>
-			<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="kw-2">&amp;</span><span class="ident">service::moonbeam_runtime::VERSION</span>,
+			<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() =&gt; <span class="kw">return</span> <span class="kw-2">&amp;</span><span class="ident">service::moonbeam_runtime::VERSION</span>,
 			<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>)]</span>
-			<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="kw-2">&amp;</span><span class="ident">service::moonbase_runtime::VERSION</span>,
+			<span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="kw-2">&amp;</span><span class="ident">service::moonbase_runtime::VERSION</span>,
 			<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>))]</span>
-			<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
+			<span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
 		}
 	}
 }
 
 <span class="kw">impl</span> <span class="ident">SubstrateCli</span> <span class="kw">for</span> <span class="ident">RelayChainCli</span> {
-	<span class="kw">fn</span> <span class="ident">impl_name</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">impl_name</span>() -&gt; <span class="ident">String</span> {
 		<span class="string">&quot;Moonbeam Parachain Collator&quot;</span>.<span class="ident">into</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">impl_version</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">impl_version</span>() -&gt; <span class="ident">String</span> {
 		<span class="macro">env!</span>(<span class="string">&quot;SUBSTRATE_CLI_IMPL_VERSION&quot;</span>).<span class="ident">into</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">description</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">description</span>() -&gt; <span class="ident">String</span> {
 		<span class="string">&quot;Moonbeam Parachain Collator\n\nThe command-line arguments provided first will be \
 		passed to the parachain node, while the arguments provided after -- will be passed \
 		to the relaychain node.\n\n\
@@ -1008,38 +1026,38 @@
 			.<span class="ident">into</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">author</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">author</span>() -&gt; <span class="ident">String</span> {
 		<span class="macro">env!</span>(<span class="string">&quot;CARGO_PKG_AUTHORS&quot;</span>).<span class="ident">into</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">support_url</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">support_url</span>() -&gt; <span class="ident">String</span> {
 		<span class="string">&quot;https://github.com/PureStake/moonbeam/issues/new&quot;</span>.<span class="ident">into</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">copyright_start_year</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+	<span class="kw">fn</span> <span class="ident">copyright_start_year</span>() -&gt; <span class="ident">i32</span> {
 		<span class="number">2019</span>
 	}
 
-	<span class="kw">fn</span> <span class="ident">load_spec</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">sc_service::ChainSpec</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">load_spec</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">sc_service::ChainSpec</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
 		<span class="kw">match</span> <span class="ident">id</span> {
 			<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;westend-native&quot;</span>)]</span>
-			<span class="string">&quot;westend_moonbase_relay_testnet&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">Box::new</span>(<span class="ident">WestendChainSpec::from_json_bytes</span>(
-				<span class="kw-2">&amp;</span><span class="macro">include_bytes!</span>(<span class="string">&quot;../../../specs/alphanet/rococo-embedded-specs-v8.json&quot;</span>)[..],
+			<span class="string">&quot;westend_moonbase_relay_testnet&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">Box::new</span>(<span class="ident">WestendChainSpec::from_json_bytes</span>(
+				<span class="kw-2">&amp;</span><span class="macro">include_bytes!</span>(<span class="string">&quot;../../../specs/alphanet/westend-embedded-specs-v8.json&quot;</span>)[..],
 			)<span class="question-mark">?</span>)),
 			<span class="comment">// If we are not using a moonbeam-centric pre-baked relay spec, then fall back to the</span>
 			<span class="comment">// Polkadot service to interpret the id.</span>
-			<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">polkadot_cli::Cli::from_iter</span>([<span class="ident">RelayChainCli::executable_name</span>()].<span class="ident">iter</span>())
+			<span class="kw">_</span> =&gt; <span class="ident">polkadot_cli::Cli::from_iter</span>([<span class="ident">RelayChainCli::executable_name</span>()].<span class="ident">iter</span>())
 				.<span class="ident">load_spec</span>(<span class="ident">id</span>),
 		}
 	}
 
-	<span class="kw">fn</span> <span class="ident">native_runtime_version</span>(<span class="ident">chain_spec</span>: <span class="kw-2">&amp;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">ChainSpec</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">RuntimeVersion</span> {
+	<span class="kw">fn</span> <span class="ident">native_runtime_version</span>(<span class="ident">chain_spec</span>: <span class="kw-2">&amp;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">ChainSpec</span><span class="op">&gt;</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">RuntimeVersion</span> {
 		<span class="ident">polkadot_cli::Cli::native_runtime_version</span>(<span class="ident">chain_spec</span>)
 	}
 }
 
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::borrowed_box</span>)]</span>
-<span class="kw">fn</span> <span class="ident">extract_genesis_wasm</span>(<span class="ident">chain_spec</span>: <span class="kw-2">&amp;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">sc_service::ChainSpec</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">extract_genesis_wasm</span>(<span class="ident">chain_spec</span>: <span class="kw-2">&amp;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">sc_service::ChainSpec</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span> {
 	<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">storage</span> <span class="op">=</span> <span class="ident">chain_spec</span>.<span class="ident">build_storage</span>()<span class="question-mark">?</span>;
 
 	<span class="ident">storage</span>
@@ -1048,7 +1066,7 @@
 		.<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;Could not find wasm file in genesis state!&quot;</span>.<span class="ident">into</span>())
 }
 
-<span class="kw">fn</span> <span class="ident">validate_trace_environment</span>(<span class="ident">cli</span>: <span class="kw-2">&amp;</span><span class="ident">Cli</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">validate_trace_environment</span>(<span class="ident">cli</span>: <span class="kw-2">&amp;</span><span class="ident">Cli</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
 	<span class="kw">if</span> (<span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">ethapi</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">EthApi::Debug</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">ethapi</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">EthApi::Trace</span>))
 		<span class="op">&amp;&amp;</span> <span class="ident">cli</span>
 			.<span class="ident">run</span>
@@ -1067,7 +1085,7 @@
 }
 
 <span class="doccomment">/// Parse command line arguments into service configuration.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
 	<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cli</span> <span class="op">=</span> <span class="ident">Cli::from_args</span>();
 	<span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">validate_trace_environment</span>(<span class="kw-2">&amp;</span><span class="ident">cli</span>)<span class="question-mark">?</span>;
 	<span class="comment">// Set --execution wasm as default</span>
@@ -1082,7 +1100,7 @@
 	}
 
 	<span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">cli</span>.<span class="ident">subcommand</span> {
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::BuildSpec</span>(<span class="ident">params</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::BuildSpec</span>(<span class="ident">params</span>)) =&gt; {
 			<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="kw-2">&amp;</span><span class="ident">params</span>.<span class="ident">base</span>)<span class="question-mark">?</span>;
 			<span class="ident">runner</span>.<span class="ident">sync_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
 				<span class="kw">if</span> <span class="ident">params</span>.<span class="ident">mnemonic</span>.<span class="ident">is_some</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">params</span>.<span class="ident">accounts</span>.<span class="ident">is_some</span>() {
@@ -1116,35 +1134,35 @@
 				}
 			})
 		}
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::CheckBlock</span>(<span class="ident">cmd</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::CheckBlock</span>(<span class="ident">cmd</span>)) =&gt; {
 			<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="ident">cmd</span>)<span class="question-mark">?</span>;
 			<span class="ident">runner</span>.<span class="ident">async_run</span>(<span class="op">|</span><span class="kw-2">mut</span> <span class="ident">config</span><span class="op">|</span> {
-				<span class="kw">let</span> (<span class="ident">client</span>, <span class="kw">_</span>, <span class="ident">import_queue</span>, <span class="ident">task_manager</span>) <span class="op">=</span> <span class="ident">service::new_chain_ops</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">config</span>)<span class="question-mark">?</span>;
+				<span class="kw">let</span> (<span class="ident">client</span>, <span class="kw">_</span>, <span class="ident">import_queue</span>, <span class="ident">task_manager</span>) <span class="op">=</span> <span class="ident">service::new_chain_ops</span>(<span class="kw-2">&amp;mut</span> <span class="ident">config</span>)<span class="question-mark">?</span>;
 				<span class="prelude-val">Ok</span>((<span class="ident">cmd</span>.<span class="ident">run</span>(<span class="ident">client</span>, <span class="ident">import_queue</span>), <span class="ident">task_manager</span>))
 			})
 		}
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::ExportBlocks</span>(<span class="ident">cmd</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::ExportBlocks</span>(<span class="ident">cmd</span>)) =&gt; {
 			<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="ident">cmd</span>)<span class="question-mark">?</span>;
 			<span class="ident">runner</span>.<span class="ident">async_run</span>(<span class="op">|</span><span class="kw-2">mut</span> <span class="ident">config</span><span class="op">|</span> {
-				<span class="kw">let</span> (<span class="ident">client</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="ident">task_manager</span>) <span class="op">=</span> <span class="ident">service::new_chain_ops</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">config</span>)<span class="question-mark">?</span>;
+				<span class="kw">let</span> (<span class="ident">client</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="ident">task_manager</span>) <span class="op">=</span> <span class="ident">service::new_chain_ops</span>(<span class="kw-2">&amp;mut</span> <span class="ident">config</span>)<span class="question-mark">?</span>;
 				<span class="prelude-val">Ok</span>((<span class="ident">cmd</span>.<span class="ident">run</span>(<span class="ident">client</span>, <span class="ident">config</span>.<span class="ident">database</span>), <span class="ident">task_manager</span>))
 			})
 		}
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::ExportState</span>(<span class="ident">cmd</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::ExportState</span>(<span class="ident">cmd</span>)) =&gt; {
 			<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="ident">cmd</span>)<span class="question-mark">?</span>;
 			<span class="ident">runner</span>.<span class="ident">async_run</span>(<span class="op">|</span><span class="kw-2">mut</span> <span class="ident">config</span><span class="op">|</span> {
-				<span class="kw">let</span> (<span class="ident">client</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="ident">task_manager</span>) <span class="op">=</span> <span class="ident">service::new_chain_ops</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">config</span>)<span class="question-mark">?</span>;
+				<span class="kw">let</span> (<span class="ident">client</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="ident">task_manager</span>) <span class="op">=</span> <span class="ident">service::new_chain_ops</span>(<span class="kw-2">&amp;mut</span> <span class="ident">config</span>)<span class="question-mark">?</span>;
 				<span class="prelude-val">Ok</span>((<span class="ident">cmd</span>.<span class="ident">run</span>(<span class="ident">client</span>, <span class="ident">config</span>.<span class="ident">chain_spec</span>), <span class="ident">task_manager</span>))
 			})
 		}
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::ImportBlocks</span>(<span class="ident">cmd</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::ImportBlocks</span>(<span class="ident">cmd</span>)) =&gt; {
 			<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="ident">cmd</span>)<span class="question-mark">?</span>;
 			<span class="ident">runner</span>.<span class="ident">async_run</span>(<span class="op">|</span><span class="kw-2">mut</span> <span class="ident">config</span><span class="op">|</span> {
-				<span class="kw">let</span> (<span class="ident">client</span>, <span class="kw">_</span>, <span class="ident">import_queue</span>, <span class="ident">task_manager</span>) <span class="op">=</span> <span class="ident">service::new_chain_ops</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">config</span>)<span class="question-mark">?</span>;
+				<span class="kw">let</span> (<span class="ident">client</span>, <span class="kw">_</span>, <span class="ident">import_queue</span>, <span class="ident">task_manager</span>) <span class="op">=</span> <span class="ident">service::new_chain_ops</span>(<span class="kw-2">&amp;mut</span> <span class="ident">config</span>)<span class="question-mark">?</span>;
 				<span class="prelude-val">Ok</span>((<span class="ident">cmd</span>.<span class="ident">run</span>(<span class="ident">client</span>, <span class="ident">import_queue</span>), <span class="ident">task_manager</span>))
 			})
 		}
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::PurgeChain</span>(<span class="ident">cmd</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::PurgeChain</span>(<span class="ident">cmd</span>)) =&gt; {
 			<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="ident">cmd</span>)<span class="question-mark">?</span>;
 			<span class="ident">runner</span>.<span class="ident">sync_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
 				<span class="comment">// Although the cumulus_client_cli::PurgeCommand will extract the relay chain id,</span>
@@ -1152,7 +1170,7 @@
 				<span class="kw">let</span> <span class="ident">extension</span> <span class="op">=</span> <span class="ident">chain_spec::Extensions::try_get</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">config</span>.<span class="ident">chain_spec</span>);
 				<span class="kw">let</span> <span class="ident">relay_chain_id</span> <span class="op">=</span> <span class="ident">extension</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">relay_chain</span>.<span class="ident">clone</span>());
 				<span class="kw">let</span> <span class="ident">dev_service</span> <span class="op">=</span>
-					<span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">dev_service</span> <span class="op">|</span><span class="op">|</span> <span class="ident">relay_chain_id</span> <span class="op">=</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="string">&quot;dev-service&quot;</span>.<span class="ident">to_string</span>());
+					<span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">dev_service</span> <span class="op">|</span><span class="op">|</span> <span class="ident">relay_chain_id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="string">&quot;dev-service&quot;</span>.<span class="ident">to_string</span>());
 
 				<span class="comment">// Remove Frontier offchain db</span>
 				<span class="kw">let</span> <span class="ident">frontier_database_config</span> <span class="op">=</span> <span class="ident">sc_service::DatabaseSource::RocksDb</span> {
@@ -1183,14 +1201,14 @@
 				<span class="ident">cmd</span>.<span class="ident">run</span>(<span class="ident">config</span>, <span class="ident">polkadot_config</span>)
 			})
 		}
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::Revert</span>(<span class="ident">cmd</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::Revert</span>(<span class="ident">cmd</span>)) =&gt; {
 			<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="ident">cmd</span>)<span class="question-mark">?</span>;
 			<span class="ident">runner</span>.<span class="ident">async_run</span>(<span class="op">|</span><span class="kw-2">mut</span> <span class="ident">config</span><span class="op">|</span> {
-				<span class="kw">let</span> (<span class="ident">client</span>, <span class="ident">backend</span>, <span class="kw">_</span>, <span class="ident">task_manager</span>) <span class="op">=</span> <span class="ident">service::new_chain_ops</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">config</span>)<span class="question-mark">?</span>;
+				<span class="kw">let</span> (<span class="ident">client</span>, <span class="ident">backend</span>, <span class="kw">_</span>, <span class="ident">task_manager</span>) <span class="op">=</span> <span class="ident">service::new_chain_ops</span>(<span class="kw-2">&amp;mut</span> <span class="ident">config</span>)<span class="question-mark">?</span>;
 				<span class="prelude-val">Ok</span>((<span class="ident">cmd</span>.<span class="ident">run</span>(<span class="ident">client</span>, <span class="ident">backend</span>), <span class="ident">task_manager</span>))
 			})
 		}
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::ExportGenesisState</span>(<span class="ident">params</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::ExportGenesisState</span>(<span class="ident">params</span>)) =&gt; {
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">sc_cli::LoggerBuilder::new</span>(<span class="string">&quot;&quot;</span>);
 			<span class="ident">builder</span>.<span class="ident">with_profiling</span>(<span class="ident">sc_tracing::TracingReceiver::Log</span>, <span class="string">&quot;&quot;</span>);
 			<span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">builder</span>.<span class="ident">init</span>();
@@ -1201,11 +1219,13 @@
 				<span class="ident">params</span>.<span class="ident">parachain_id</span>.<span class="ident">unwrap_or</span>(<span class="number">1000</span>).<span class="ident">into</span>(),
 				<span class="kw-2">&amp;</span><span class="ident">cli</span>.<span class="ident">run</span>,
 			)<span class="question-mark">?</span>;
+			<span class="kw">let</span> <span class="ident">state_version</span> <span class="op">=</span> <span class="ident">Cli::native_runtime_version</span>(<span class="kw-2">&amp;</span><span class="ident">chain_spec</span>).<span class="ident">state_version</span>();
+
 			<span class="kw">let</span> <span class="ident">output_buf</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">chain_spec</span> {
 				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonriver-native&quot;</span>)]</span>
-				<span class="ident">chain_spec</span> <span class="kw">if</span> <span class="ident">chain_spec</span>.<span class="ident">is_moonriver</span>() <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="ident">chain_spec</span> <span class="kw">if</span> <span class="ident">chain_spec</span>.<span class="ident">is_moonriver</span>() =&gt; {
 					<span class="kw">let</span> <span class="ident">block</span>: <span class="ident">service::moonriver_runtime::Block</span> <span class="op">=</span>
-						<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">chain_spec</span>)<span class="question-mark">?</span>;
+						<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">chain_spec</span>, <span class="ident">state_version</span>)<span class="question-mark">?</span>;
 					<span class="kw">let</span> <span class="ident">raw_header</span> <span class="op">=</span> <span class="ident">block</span>.<span class="ident">header</span>().<span class="ident">encode</span>();
 					<span class="kw">let</span> <span class="ident">output_buf</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">params</span>.<span class="ident">raw</span> {
 						<span class="ident">raw_header</span>
@@ -1215,9 +1235,9 @@
 					<span class="ident">output_buf</span>
 				}
 				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbeam-native&quot;</span>)]</span>
-				<span class="ident">chain_spec</span> <span class="kw">if</span> <span class="ident">chain_spec</span>.<span class="ident">is_moonbeam</span>() <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="ident">chain_spec</span> <span class="kw">if</span> <span class="ident">chain_spec</span>.<span class="ident">is_moonbeam</span>() =&gt; {
 					<span class="kw">let</span> <span class="ident">block</span>: <span class="ident">service::moonbeam_runtime::Block</span> <span class="op">=</span>
-						<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">chain_spec</span>)<span class="question-mark">?</span>;
+						<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">chain_spec</span>, <span class="ident">state_version</span>)<span class="question-mark">?</span>;
 					<span class="kw">let</span> <span class="ident">raw_header</span> <span class="op">=</span> <span class="ident">block</span>.<span class="ident">header</span>().<span class="ident">encode</span>();
 					<span class="kw">let</span> <span class="ident">output_buf</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">params</span>.<span class="ident">raw</span> {
 						<span class="ident">raw_header</span>
@@ -1227,9 +1247,9 @@
 					<span class="ident">output_buf</span>
 				}
 				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>)]</span>
-				<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="kw">_</span> =&gt; {
 					<span class="kw">let</span> <span class="ident">block</span>: <span class="ident">service::moonbase_runtime::Block</span> <span class="op">=</span>
-						<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">chain_spec</span>)<span class="question-mark">?</span>;
+						<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">chain_spec</span>, <span class="ident">state_version</span>)<span class="question-mark">?</span>;
 					<span class="kw">let</span> <span class="ident">raw_header</span> <span class="op">=</span> <span class="ident">block</span>.<span class="ident">header</span>().<span class="ident">encode</span>();
 					<span class="kw">let</span> <span class="ident">output_buf</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">params</span>.<span class="ident">raw</span> {
 						<span class="ident">raw_header</span>
@@ -1239,7 +1259,7 @@
 					<span class="ident">output_buf</span>
 				}
 				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>))]</span>
-				<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
+				<span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
 			};
 
 			<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">output</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">params</span>.<span class="ident">output</span> {
@@ -1250,7 +1270,7 @@
 
 			<span class="prelude-val">Ok</span>(())
 		}
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::ExportGenesisWasm</span>(<span class="ident">params</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::ExportGenesisWasm</span>(<span class="ident">params</span>)) =&gt; {
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">sc_cli::LoggerBuilder::new</span>(<span class="string">&quot;&quot;</span>);
 			<span class="ident">builder</span>.<span class="ident">with_profiling</span>(<span class="ident">sc_tracing::TracingReceiver::Log</span>, <span class="string">&quot;&quot;</span>);
 			<span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">builder</span>.<span class="ident">init</span>();
@@ -1271,7 +1291,7 @@
 
 			<span class="prelude-val">Ok</span>(())
 		}
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::PerfTest</span>(<span class="ident">cmd</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::PerfTest</span>(<span class="ident">cmd</span>)) =&gt; {
 			<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw">_</span>) <span class="op">=</span> <span class="ident">cmd</span>.<span class="ident">shared_params</span>.<span class="ident">base_path</span> {
 				<span class="macro">log::warn!</span>(<span class="string">&quot;base_path is overwritten by working_dir in perf-test&quot;</span>);
 			}
@@ -1287,30 +1307,43 @@
 			<span class="ident">cmd</span>.<span class="ident">shared_params</span>.<span class="ident">base_path</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">working_dir</span>.<span class="ident">clone</span>());
 
 			<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="kw-2">&amp;</span><span class="ident">cmd</span>)<span class="question-mark">?</span>;
-			<span class="ident">runner</span>.<span class="ident">sync_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
+			<span class="kw">let</span> <span class="ident">chain_spec</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">runner</span>.<span class="ident">config</span>().<span class="ident">chain_spec</span>;
+			<span class="kw">match</span> <span class="ident">chain_spec</span> {
+				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbeam-native&quot;</span>)]</span>
+				<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() =&gt; <span class="ident">runner</span>.<span class="ident">sync_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
+					<span class="ident">cmd</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">service::moonbeam_runtime::RuntimeApi</span>, <span class="ident">service::MoonbeamExecutor</span><span class="op">&gt;</span>(
+						<span class="kw-2">&amp;</span><span class="ident">cmd</span>, <span class="ident">config</span>,
+					)
+				}),
+				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonriver-native&quot;</span>)]</span>
+				<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() =&gt; <span class="ident">runner</span>.<span class="ident">sync_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
+					<span class="ident">cmd</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">service::moonriver_runtime::RuntimeApi</span>, <span class="ident">service::MoonriverExecutor</span><span class="op">&gt;</span>(
+						<span class="kw-2">&amp;</span><span class="ident">cmd</span>, <span class="ident">config</span>,
+					)
+				}),
 				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>)]</span>
-				<span class="kw">return</span> <span class="ident">cmd</span>
-					.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">service::moonbase_runtime::RuntimeApi</span>, <span class="ident">service::MoonbaseExecutor</span><span class="op">&gt;</span>(
-						<span class="kw-2">&amp;</span><span class="ident">working_dir</span>,
-						<span class="kw-2">&amp;</span><span class="ident">cmd</span>,
-						<span class="ident">config</span>,
-					);
-				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>))]</span>
-				<span class="macro">panic!</span>(<span class="string">&quot;perf-test only available for moonbase&quot;</span>);
-			})<span class="question-mark">?</span>;
+				<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbase</span>() =&gt; <span class="ident">runner</span>.<span class="ident">sync_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
+					<span class="ident">cmd</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">service::moonbase_runtime::RuntimeApi</span>, <span class="ident">service::MoonbaseExecutor</span><span class="op">&gt;</span>(
+						<span class="kw-2">&amp;</span><span class="ident">cmd</span>, <span class="ident">config</span>,
+					)
+				}),
+				<span class="kw">_</span> =&gt; {
+					<span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>);
+				}
+			}<span class="question-mark">?</span>;
 
 			<span class="macro">log::debug!</span>(<span class="string">&quot;removing temp perf_test dir {:?}&quot;</span>, <span class="ident">working_dir</span>);
 			<span class="ident">std::fs::remove_dir_all</span>(<span class="ident">working_dir</span>)<span class="question-mark">?</span>;
 
 			<span class="prelude-val">Ok</span>(())
 		}
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::Benchmark</span>(<span class="ident">cmd</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::Benchmark</span>(<span class="ident">cmd</span>)) =&gt; {
 			<span class="kw">if</span> <span class="macro">cfg!</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;runtime-benchmarks&quot;</span>) {
 				<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="ident">cmd</span>)<span class="question-mark">?</span>;
 				<span class="kw">let</span> <span class="ident">chain_spec</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">runner</span>.<span class="ident">config</span>().<span class="ident">chain_spec</span>;
 				<span class="kw">match</span> <span class="ident">chain_spec</span> {
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonriver-native&quot;</span>)]</span>
-					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() =&gt; {
 						<span class="kw">return</span> <span class="ident">runner</span>.<span class="ident">sync_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
 							<span class="ident">cmd</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">service::moonriver_runtime::Block</span>, <span class="ident">service::MoonriverExecutor</span><span class="op">&gt;</span>(
 								<span class="ident">config</span>,
@@ -1318,7 +1351,7 @@
 						})
 					}
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbeam-native&quot;</span>)]</span>
-					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() =&gt; {
 						<span class="kw">return</span> <span class="ident">runner</span>.<span class="ident">sync_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
 							<span class="ident">cmd</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">service::moonbeam_runtime::Block</span>, <span class="ident">service::MoonbeamExecutor</span><span class="op">&gt;</span>(
 								<span class="ident">config</span>,
@@ -1326,7 +1359,7 @@
 						})
 					}
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>)]</span>
-					<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="kw">_</span> =&gt; {
 						<span class="kw">return</span> <span class="ident">runner</span>.<span class="ident">sync_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
 							<span class="ident">cmd</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">service::moonbase_runtime::Block</span>, <span class="ident">service::MoonbaseExecutor</span><span class="op">&gt;</span>(
 								<span class="ident">config</span>,
@@ -1334,8 +1367,13 @@
 						})
 					}
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>))]</span>
-					<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
+					<span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
 				}
+			} <span class="kw">else</span> <span class="kw">if</span> <span class="macro">cfg!</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-runtime-benchmarks&quot;</span>) {
+				<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="ident">cmd</span>)<span class="question-mark">?</span>;
+				<span class="kw">return</span> <span class="ident">runner</span>.<span class="ident">sync_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
+					<span class="ident">cmd</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">service::moonbase_runtime::Block</span>, <span class="ident">service::MoonbaseExecutor</span><span class="op">&gt;</span>(<span class="ident">config</span>)
+				});
 			} <span class="kw">else</span> {
 				<span class="prelude-val">Err</span>(<span class="string">&quot;Benchmarking wasn&#39;t enabled when building the node. \
 				You can enable it with `--features runtime-benchmarks`.&quot;</span>
@@ -1343,16 +1381,16 @@
 			}
 		}
 		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;try-runtime&quot;</span>)]</span>
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::TryRuntime</span>(<span class="ident">cmd</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::TryRuntime</span>(<span class="ident">cmd</span>)) =&gt; {
 			<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="ident">cmd</span>)<span class="question-mark">?</span>;
 			<span class="kw">let</span> <span class="ident">chain_spec</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">runner</span>.<span class="ident">config</span>().<span class="ident">chain_spec</span>;
 			<span class="kw">match</span> <span class="ident">chain_spec</span> {
 				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonriver-native&quot;</span>)]</span>
-				<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() =&gt; {
 					<span class="ident">runner</span>.<span class="ident">async_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
 						<span class="kw">let</span> <span class="ident">registry</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">prometheus_config</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">cfg</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">cfg</span>.<span class="ident">registry</span>);
 						<span class="kw">let</span> <span class="ident">task_manager</span> <span class="op">=</span>
-							<span class="ident">sc_service::TaskManager::new</span>(<span class="ident">config</span>.<span class="ident">task_executor</span>.<span class="ident">clone</span>(), <span class="ident">registry</span>)
+							<span class="ident">sc_service::TaskManager::new</span>(<span class="ident">config</span>.<span class="ident">tokio_handle</span>.<span class="ident">clone</span>(), <span class="ident">registry</span>)
 								.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
 									<span class="ident">sc_cli::Error::Service</span>(<span class="ident">sc_service::Error::Prometheus</span>(<span class="ident">e</span>))
 								})<span class="question-mark">?</span>;
@@ -1364,10 +1402,10 @@
 					})
 				}
 				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbeam-native&quot;</span>)]</span>
-				<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() <span class="op">=</span><span class="op">&gt;</span> <span class="ident">runner</span>.<span class="ident">async_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
+				<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() =&gt; <span class="ident">runner</span>.<span class="ident">async_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
 					<span class="kw">let</span> <span class="ident">registry</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">prometheus_config</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">cfg</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">cfg</span>.<span class="ident">registry</span>);
 					<span class="kw">let</span> <span class="ident">task_manager</span> <span class="op">=</span>
-						<span class="ident">sc_service::TaskManager::new</span>(<span class="ident">config</span>.<span class="ident">task_executor</span>.<span class="ident">clone</span>(), <span class="ident">registry</span>)
+						<span class="ident">sc_service::TaskManager::new</span>(<span class="ident">config</span>.<span class="ident">tokio_handle</span>.<span class="ident">clone</span>(), <span class="ident">registry</span>)
 							.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
 								<span class="ident">sc_cli::Error::Service</span>(<span class="ident">sc_service::Error::Prometheus</span>(<span class="ident">e</span>))
 							})<span class="question-mark">?</span>;
@@ -1380,13 +1418,13 @@
 					))
 				}),
 				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>)]</span>
-				<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="kw">_</span> =&gt; {
 					<span class="ident">runner</span>.<span class="ident">async_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
 						<span class="comment">// we don&#39;t need any of the components of new_partial, just a runtime, or a task</span>
 						<span class="comment">// manager to do `async_run`.</span>
 						<span class="kw">let</span> <span class="ident">registry</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">prometheus_config</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">cfg</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">cfg</span>.<span class="ident">registry</span>);
 						<span class="kw">let</span> <span class="ident">task_manager</span> <span class="op">=</span>
-							<span class="ident">sc_service::TaskManager::new</span>(<span class="ident">config</span>.<span class="ident">task_executor</span>.<span class="ident">clone</span>(), <span class="ident">registry</span>)
+							<span class="ident">sc_service::TaskManager::new</span>(<span class="ident">config</span>.<span class="ident">tokio_handle</span>.<span class="ident">clone</span>(), <span class="ident">registry</span>)
 								.<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
 									<span class="ident">sc_cli::Error::Service</span>(<span class="ident">sc_service::Error::Prometheus</span>(<span class="ident">e</span>))
 								})<span class="question-mark">?</span>;
@@ -1400,15 +1438,15 @@
 					})
 				}
 				<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>))]</span>
-				<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
+				<span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
 			}
 		}
 		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;try-runtime&quot;</span>))]</span>
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::TryRuntime</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="string">&quot;TryRuntime wasn&#39;t enabled when building the node. \
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::TryRuntime</span>) =&gt; <span class="prelude-val">Err</span>(<span class="string">&quot;TryRuntime wasn&#39;t enabled when building the node. \
 				You can enable it at build time with `--features try-runtime`.&quot;</span>
 			.<span class="ident">into</span>()),
-		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::Key</span>(<span class="ident">cmd</span>)) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">cmd</span>.<span class="ident">run</span>(<span class="kw-2">&amp;</span><span class="ident">cli</span>)<span class="question-mark">?</span>),
-		<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">Subcommand::Key</span>(<span class="ident">cmd</span>)) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">cmd</span>.<span class="ident">run</span>(<span class="kw-2">&amp;</span><span class="ident">cli</span>)<span class="question-mark">?</span>),
+		<span class="prelude-val">None</span> =&gt; {
 			<span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">cli</span>.<span class="ident">run</span>).<span class="ident">normalize</span>())<span class="question-mark">?</span>;
 			<span class="ident">runner</span>.<span class="ident">run_node_until_exit</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> <span class="kw">async</span> <span class="kw">move</span> {
 				<span class="kw">let</span> <span class="ident">extension</span> <span class="op">=</span> <span class="ident">chain_spec::Extensions::try_get</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">config</span>.<span class="ident">chain_spec</span>);
@@ -1421,7 +1459,10 @@
 					<span class="ident">ethapi_trace_max_count</span>: <span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">ethapi_trace_max_count</span>,
 					<span class="ident">ethapi_trace_cache_duration</span>: <span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">ethapi_trace_cache_duration</span>,
 					<span class="ident">eth_log_block_cache</span>: <span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">eth_log_block_cache</span>,
+					<span class="ident">eth_statuses_cache</span>: <span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">eth_statuses_cache</span>,
+					<span class="ident">fee_history_limit</span>: <span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">fee_history_limit</span>,
 					<span class="ident">max_past_logs</span>: <span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">max_past_logs</span>,
+					<span class="ident">relay_chain_rpc_url</span>: <span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">base</span>.<span class="ident">relay_chain_rpc_url</span>,
 				};
 
 				<span class="comment">// If dev service was requested, start up manual or instant seal.</span>
@@ -1432,7 +1473,7 @@
 				<span class="comment">// NOTE: the --dev flag triggers the dev service by way of number 2</span>
 				<span class="kw">let</span> <span class="ident">relay_chain_id</span> <span class="op">=</span> <span class="ident">extension</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">relay_chain</span>.<span class="ident">clone</span>());
 				<span class="kw">let</span> <span class="ident">dev_service</span> <span class="op">=</span>
-					<span class="ident">config</span>.<span class="ident">chain_spec</span>.<span class="ident">is_dev</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">relay_chain_id</span> <span class="op">=</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="string">&quot;dev-service&quot;</span>.<span class="ident">to_string</span>());
+					<span class="ident">config</span>.<span class="ident">chain_spec</span>.<span class="ident">is_dev</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">relay_chain_id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="string">&quot;dev-service&quot;</span>.<span class="ident">to_string</span>());
 
 				<span class="kw">if</span> <span class="ident">dev_service</span> {
 					<span class="comment">// When running the dev service, just use Alice&#39;s author inherent</span>
@@ -1445,25 +1486,25 @@
 
 					<span class="kw">return</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">config</span>.<span class="ident">chain_spec</span> {
 						<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonriver-native&quot;</span>)]</span>
-						<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() <span class="op">=</span><span class="op">&gt;</span> <span class="ident">service::new_dev</span>::<span class="op">&lt;</span>
+						<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() =&gt; <span class="ident">service::new_dev</span>::<span class="op">&lt;</span>
 							<span class="ident">service::moonriver_runtime::RuntimeApi</span>,
 							<span class="ident">service::MoonriverExecutor</span>,
 						<span class="op">&gt;</span>(<span class="ident">config</span>, <span class="ident">author_id</span>, <span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">sealing</span>, <span class="ident">rpc_config</span>)
 						.<span class="ident">map_err</span>(<span class="ident">Into::into</span>),
 						<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbeam-native&quot;</span>)]</span>
-						<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() <span class="op">=</span><span class="op">&gt;</span> <span class="ident">service::new_dev</span>::<span class="op">&lt;</span>
+						<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() =&gt; <span class="ident">service::new_dev</span>::<span class="op">&lt;</span>
 							<span class="ident">service::moonbeam_runtime::RuntimeApi</span>,
 							<span class="ident">service::MoonbeamExecutor</span>,
 						<span class="op">&gt;</span>(<span class="ident">config</span>, <span class="ident">author_id</span>, <span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">sealing</span>, <span class="ident">rpc_config</span>)
 						.<span class="ident">map_err</span>(<span class="ident">Into::into</span>),
 						<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>)]</span>
-						<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">service::new_dev</span>::<span class="op">&lt;</span>
+						<span class="kw">_</span> =&gt; <span class="ident">service::new_dev</span>::<span class="op">&lt;</span>
 							<span class="ident">service::moonbase_runtime::RuntimeApi</span>,
 							<span class="ident">service::MoonbaseExecutor</span>,
 						<span class="op">&gt;</span>(<span class="ident">config</span>, <span class="ident">author_id</span>, <span class="ident">cli</span>.<span class="ident">run</span>.<span class="ident">sealing</span>, <span class="ident">rpc_config</span>)
 						.<span class="ident">map_err</span>(<span class="ident">Into::into</span>),
 						<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>))]</span>
-						<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
+						<span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
 					};
 				}
 
@@ -1477,27 +1518,30 @@
 				<span class="kw">let</span> <span class="ident">parachain_account</span> <span class="op">=</span>
 					<span class="ident">AccountIdConversion</span>::<span class="op">&lt;</span><span class="ident">polkadot_primitives::v0::AccountId</span><span class="op">&gt;</span><span class="ident">::into_account</span>(<span class="kw-2">&amp;</span><span class="ident">id</span>);
 
+				<span class="kw">let</span> <span class="ident">state_version</span> <span class="op">=</span>
+					<span class="ident">RelayChainCli::native_runtime_version</span>(<span class="kw-2">&amp;</span><span class="ident">config</span>.<span class="ident">chain_spec</span>).<span class="ident">state_version</span>();
+
 				<span class="kw">let</span> <span class="ident">genesis_state</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">config</span>.<span class="ident">chain_spec</span> {
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonriver-native&quot;</span>)]</span>
-					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() =&gt; {
 						<span class="kw">let</span> <span class="ident">block</span>: <span class="ident">service::moonriver_runtime::Block</span> <span class="op">=</span>
-							<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">spec</span>)<span class="question-mark">?</span>;
+							<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">spec</span>, <span class="ident">state_version</span>)<span class="question-mark">?</span>;
 						<span class="macro">format!</span>(<span class="string">&quot;0x{:?}&quot;</span>, <span class="ident">HexDisplay::from</span>(<span class="kw-2">&amp;</span><span class="ident">block</span>.<span class="ident">header</span>().<span class="ident">encode</span>()))
 					}
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbeam-native&quot;</span>)]</span>
-					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() =&gt; {
 						<span class="kw">let</span> <span class="ident">block</span>: <span class="ident">service::moonbeam_runtime::Block</span> <span class="op">=</span>
-							<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">spec</span>)<span class="question-mark">?</span>;
+							<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">spec</span>, <span class="ident">state_version</span>)<span class="question-mark">?</span>;
 						<span class="macro">format!</span>(<span class="string">&quot;0x{:?}&quot;</span>, <span class="ident">HexDisplay::from</span>(<span class="kw-2">&amp;</span><span class="ident">block</span>.<span class="ident">header</span>().<span class="ident">encode</span>()))
 					}
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>)]</span>
-					<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="kw">_</span> =&gt; {
 						<span class="kw">let</span> <span class="ident">block</span>: <span class="ident">service::moonbase_runtime::Block</span> <span class="op">=</span>
-							<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">config</span>.<span class="ident">chain_spec</span>)<span class="question-mark">?</span>;
+							<span class="ident">generate_genesis_block</span>(<span class="kw-2">&amp;</span><span class="ident">config</span>.<span class="ident">chain_spec</span>, <span class="ident">state_version</span>)<span class="question-mark">?</span>;
 						<span class="macro">format!</span>(<span class="string">&quot;0x{:?}&quot;</span>, <span class="ident">HexDisplay::from</span>(<span class="kw-2">&amp;</span><span class="ident">block</span>.<span class="ident">header</span>().<span class="ident">encode</span>()))
 					}
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>))]</span>
-					<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
+					<span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
 				};
 
 				<span class="kw">let</span> <span class="ident">tokio_handle</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">tokio_handle</span>.<span class="ident">clone</span>();
@@ -1511,7 +1555,7 @@
 
 				<span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">config</span>.<span class="ident">chain_spec</span> {
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonriver-native&quot;</span>)]</span>
-					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() <span class="op">=</span><span class="op">&gt;</span> <span class="ident">service::start_node</span>::<span class="op">&lt;</span>
+					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonriver</span>() =&gt; <span class="ident">service::start_node</span>::<span class="op">&lt;</span>
 						<span class="ident">service::moonriver_runtime::RuntimeApi</span>,
 						<span class="ident">service::MoonriverExecutor</span>,
 					<span class="op">&gt;</span>(<span class="ident">config</span>, <span class="ident">polkadot_config</span>, <span class="ident">id</span>, <span class="ident">rpc_config</span>)
@@ -1519,7 +1563,7 @@
 					.<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="number">0</span>)
 					.<span class="ident">map_err</span>(<span class="ident">Into::into</span>),
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbeam-native&quot;</span>)]</span>
-					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() <span class="op">=</span><span class="op">&gt;</span> <span class="ident">service::start_node</span>::<span class="op">&lt;</span>
+					<span class="ident">spec</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">is_moonbeam</span>() =&gt; <span class="ident">service::start_node</span>::<span class="op">&lt;</span>
 						<span class="ident">service::moonbeam_runtime::RuntimeApi</span>,
 						<span class="ident">service::MoonbeamExecutor</span>,
 					<span class="op">&gt;</span>(<span class="ident">config</span>, <span class="ident">polkadot_config</span>, <span class="ident">id</span>, <span class="ident">rpc_config</span>)
@@ -1527,7 +1571,7 @@
 					.<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="number">0</span>)
 					.<span class="ident">map_err</span>(<span class="ident">Into::into</span>),
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>)]</span>
-					<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">service::start_node</span>::<span class="op">&lt;</span>
+					<span class="kw">_</span> =&gt; <span class="ident">service::start_node</span>::<span class="op">&lt;</span>
 						<span class="ident">service::moonbase_runtime::RuntimeApi</span>,
 						<span class="ident">service::MoonbaseExecutor</span>,
 					<span class="op">&gt;</span>(<span class="ident">config</span>, <span class="ident">polkadot_config</span>, <span class="ident">id</span>, <span class="ident">rpc_config</span>)
@@ -1535,7 +1579,7 @@
 					.<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="number">0</span>)
 					.<span class="ident">map_err</span>(<span class="ident">Into::into</span>),
 					<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;moonbase-native&quot;</span>))]</span>
-					<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
+					<span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;invalid chain spec&quot;</span>),
 				}
 			})
 		}
@@ -1543,68 +1587,83 @@
 }
 
 <span class="kw">impl</span> <span class="ident">DefaultConfigurationValues</span> <span class="kw">for</span> <span class="ident">RelayChainCli</span> {
-	<span class="kw">fn</span> <span class="ident">p2p_listen_port</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
+	<span class="kw">fn</span> <span class="ident">p2p_listen_port</span>() -&gt; <span class="ident">u16</span> {
 		<span class="number">30334</span>
 	}
 
-	<span class="kw">fn</span> <span class="ident">rpc_ws_listen_port</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
+	<span class="kw">fn</span> <span class="ident">rpc_ws_listen_port</span>() -&gt; <span class="ident">u16</span> {
 		<span class="number">9945</span>
 	}
 
-	<span class="kw">fn</span> <span class="ident">rpc_http_listen_port</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
+	<span class="kw">fn</span> <span class="ident">rpc_http_listen_port</span>() -&gt; <span class="ident">u16</span> {
 		<span class="number">9934</span>
 	}
 
-	<span class="kw">fn</span> <span class="ident">prometheus_listen_port</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
+	<span class="kw">fn</span> <span class="ident">prometheus_listen_port</span>() -&gt; <span class="ident">u16</span> {
 		<span class="number">9616</span>
 	}
 }
 
 <span class="kw">impl</span> <span class="ident">CliConfiguration</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">RelayChainCli</span> {
-	<span class="kw">fn</span> <span class="ident">shared_params</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">SharedParams</span> {
+	<span class="kw">fn</span> <span class="ident">shared_params</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">SharedParams</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">shared_params</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">import_params</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ImportParams</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">import_params</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ImportParams</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">import_params</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">network_params</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">NetworkParams</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">network_params</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">NetworkParams</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">network_params</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">keystore_params</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">KeystoreParams</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">keystore_params</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">KeystoreParams</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">keystore_params</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">base_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">BasePath</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">base_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">BasePath</span><span class="op">&gt;</span><span class="op">&gt;</span> {
 		<span class="prelude-val">Ok</span>(<span class="self">self</span>
 			.<span class="ident">shared_params</span>()
 			.<span class="ident">base_path</span>()
 			.<span class="ident">or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">base_path</span>.<span class="ident">clone</span>().<span class="ident">map</span>(<span class="ident">Into::into</span>)))
 	}
 
-	<span class="kw">fn</span> <span class="ident">rpc_http</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">default_listen_port</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">SocketAddr</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">rpc_http</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">default_listen_port</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">SocketAddr</span><span class="op">&gt;</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">rpc_http</span>(<span class="ident">default_listen_port</span>)
 	}
 
-	<span class="kw">fn</span> <span class="ident">rpc_ipc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">rpc_ipc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">rpc_ipc</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">rpc_ws</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">default_listen_port</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">SocketAddr</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">rpc_ws</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">default_listen_port</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">SocketAddr</span><span class="op">&gt;</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">rpc_ws</span>(<span class="ident">default_listen_port</span>)
 	}
 
-	<span class="kw">fn</span> <span class="ident">prometheus_config</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">default_listen_port</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PrometheusConfig</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">prometheus_config</span>(<span class="ident">default_listen_port</span>)
+	<span class="kw">fn</span> <span class="ident">prometheus_config</span>(
+		<span class="kw-2">&amp;</span><span class="self">self</span>,
+		<span class="ident">default_listen_port</span>: <span class="ident">u16</span>,
+		<span class="ident">chain_spec</span>: <span class="kw-2">&amp;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">ChainSpec</span><span class="op">&gt;</span>,
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PrometheusConfig</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+		<span class="self">self</span>.<span class="ident">base</span>
+			.<span class="ident">base</span>
+			.<span class="ident">prometheus_config</span>(<span class="ident">default_listen_port</span>, <span class="ident">chain_spec</span>)
 	}
 
-	<span class="kw">fn</span> <span class="ident">init</span><span class="op">&lt;</span><span class="ident">C</span>: <span class="ident">SubstrateCli</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">init</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(
+		<span class="kw-2">&amp;</span><span class="self">self</span>,
+		<span class="ident">_support_url</span>: <span class="kw-2">&amp;</span><span class="ident">String</span>,
+		<span class="ident">_impl_version</span>: <span class="kw-2">&amp;</span><span class="ident">String</span>,
+		<span class="ident">_logger_hook</span>: <span class="ident">F</span>,
+		<span class="ident">_config</span>: <span class="kw-2">&amp;</span><span class="ident">sc_service::Configuration</span>,
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
+	<span class="kw">where</span>
+		<span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">sc_cli::LoggerBuilder</span>, <span class="kw-2">&amp;</span><span class="ident">sc_service::Configuration</span>),
+	{
 		<span class="macro">unreachable!</span>(<span class="string">&quot;PolkadotCli is never initialized; qed&quot;</span>);
 	}
 
-	<span class="kw">fn</span> <span class="ident">chain_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">is_dev</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">chain_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">is_dev</span>: <span class="ident">bool</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">chain_id</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">chain_id</span>(<span class="ident">is_dev</span>)<span class="question-mark">?</span>;
 
 		<span class="prelude-val">Ok</span>(<span class="kw">if</span> <span class="ident">chain_id</span>.<span class="ident">is_empty</span>() {
@@ -1614,27 +1673,27 @@
 		})
 	}
 
-	<span class="kw">fn</span> <span class="ident">role</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">is_dev</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">sc_service::Role</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">role</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">is_dev</span>: <span class="ident">bool</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">sc_service::Role</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">role</span>(<span class="ident">is_dev</span>)
 	}
 
-	<span class="kw">fn</span> <span class="ident">transaction_pool</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">sc_service::config::TransactionPoolOptions</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">transaction_pool</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">sc_service::config::TransactionPoolOptions</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">transaction_pool</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">state_cache_child_ratio</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">state_cache_child_ratio</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">state_cache_child_ratio</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">rpc_methods</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">sc_service::config::RpcMethods</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">rpc_methods</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">sc_service::config::RpcMethods</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">rpc_methods</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">rpc_ws_max_connections</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">rpc_ws_max_connections</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">rpc_ws_max_connections</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">rpc_cors</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">is_dev</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">rpc_cors</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">is_dev</span>: <span class="ident">bool</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">rpc_cors</span>(<span class="ident">is_dev</span>)
 	}
 
@@ -1642,27 +1701,26 @@
 	<span class="comment">// 	self.base.base.telemetry_external_transport()</span>
 	<span class="comment">// }</span>
 
-	<span class="kw">fn</span> <span class="ident">default_heap_pages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">default_heap_pages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">default_heap_pages</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">force_authoring</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">force_authoring</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">force_authoring</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">disable_grandpa</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">disable_grandpa</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">disable_grandpa</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">max_runtime_instances</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">max_runtime_instances</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">max_runtime_instances</span>()
 	}
 
-	<span class="kw">fn</span> <span class="ident">announce_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">announce_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">base</span>.<span class="ident">base</span>.<span class="ident">announce_block</span>()
 	}
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="moonbeam_cli" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="moonbeam_cli" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (3b348d932 2022-02-19)" ></div>
 </body></html>

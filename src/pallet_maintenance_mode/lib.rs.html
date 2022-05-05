@@ -1,4 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `pallets&#x2F;maintenance-mode&#x2F;src&#x2F;lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../pallet_maintenance_mode/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `pallets/maintenance-mode/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../pallet_maintenance_mode/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../pallet_maintenance_mode/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../pallet_maintenance_mode/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -190,7 +195,81 @@
 <span id="190">190</span>
 <span id="191">191</span>
 <span id="192">192</span>
-</pre><pre class="rust"><code><span class="comment">// Copyright 2019-2021 PureStake Inc.</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+</pre><pre class="rust"><code><span class="comment">// Copyright 2019-2022 PureStake Inc.</span>
 <span class="comment">// This file is part of Moonbeam.</span>
 
 <span class="comment">// Moonbeam is free software: you can redistribute it and/or modify</span>
@@ -228,10 +307,6 @@
 <span class="doccomment">//! 4. Maintenance mode timeout. To avoid getting stuck in maintenance mode. It could automatically</span>
 <span class="doccomment">//! switch back to normal mode after a pre-decided number of blocks. Maybe there could be an</span>
 <span class="doccomment">//! extrinsic to extend the maintenance time.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! 5. Let the runtime developer configure which pallets&#39; on_initialize and on_finalize hooks get</span>
-<span class="doccomment">//! called. This would allow to determine whether eg staking elections should still occur and</span>
-<span class="doccomment">//! democracy referenda still mature</span>
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_camel_case_types</span>)]</span>
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>), <span class="ident">no_std</span>)]</span>
@@ -241,20 +316,46 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span>;
 
+<span class="kw">mod</span> <span class="ident">types</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">types</span>::<span class="kw-2">*</span>;
+
 <span class="kw">use</span> <span class="ident">frame_support::pallet</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">pallet</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">pallet</span>]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">pallet</span> {
+	<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xcm-support&quot;</span>)]</span>
+	<span class="kw">use</span> <span class="ident">cumulus_primitives_core</span>::{
+		<span class="ident">relay_chain::BlockNumber</span> <span class="kw">as</span> <span class="ident">RelayBlockNumber</span>, <span class="ident">DmpMessageHandler</span>,
+	};
 	<span class="kw">use</span> <span class="ident">frame_support::pallet_prelude</span>::<span class="kw-2">*</span>;
-	<span class="kw">use</span> <span class="ident">frame_support::traits</span>::{<span class="ident">Contains</span>, <span class="ident">EnsureOrigin</span>};
+	<span class="kw">use</span> <span class="ident">frame_support::traits</span>::{
+		<span class="ident">Contains</span>, <span class="ident">EnsureOrigin</span>, <span class="ident">OffchainWorker</span>, <span class="ident">OnFinalize</span>, <span class="ident">OnIdle</span>, <span class="ident">OnInitialize</span>, <span class="ident">OnRuntimeUpgrade</span>,
+	};
 	<span class="kw">use</span> <span class="ident">frame_system::pallet_prelude</span>::<span class="kw-2">*</span>;
-
+	<span class="kw">use</span> <span class="ident">sp_runtime::DispatchResult</span>;
+	<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xcm-support&quot;</span>)]</span>
+	<span class="kw">use</span> <span class="ident">sp_std::vec::Vec</span>;
 	<span class="doccomment">/// Pallet for migrations</span>
 	<span class="attribute">#[<span class="ident">pallet::pallet</span>]</span>
-	<span class="attribute">#[<span class="ident">pallet::generate_storage_info</span>]</span>
+	<span class="attribute">#[<span class="ident">pallet::without_storage_info</span>]</span>
 	<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">PhantomData</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+
+	<span class="doccomment">/// Pause and resume execution of XCM</span>
+	<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PauseXcmExecution</span> {
+		<span class="kw">fn</span> <span class="ident">suspend_xcm_execution</span>() -&gt; <span class="ident">DispatchResult</span>;
+		<span class="kw">fn</span> <span class="ident">resume_xcm_execution</span>() -&gt; <span class="ident">DispatchResult</span>;
+	}
+
+	<span class="kw">impl</span> <span class="ident">PauseXcmExecution</span> <span class="kw">for</span> () {
+		<span class="kw">fn</span> <span class="ident">suspend_xcm_execution</span>() -&gt; <span class="ident">DispatchResult</span> {
+			<span class="prelude-val">Ok</span>(())
+		}
+		<span class="kw">fn</span> <span class="ident">resume_xcm_execution</span>() -&gt; <span class="ident">DispatchResult</span> {
+			<span class="prelude-val">Ok</span>(())
+		}
+	}
 
 	<span class="doccomment">/// Configuration trait of this pallet.</span>
 	<span class="attribute">#[<span class="ident">pallet::config</span>]</span>
@@ -273,6 +374,33 @@
 		<span class="doccomment">/// able to return to normal mode. For example, if your MaintenanceOrigin is a council, make</span>
 		<span class="doccomment">/// sure that your councilors can still cast votes.</span>
 		<span class="kw">type</span> <span class="ident">MaintenanceOrigin</span>: <span class="ident">EnsureOrigin</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Origin</span><span class="op">&gt;</span>;
+		<span class="doccomment">/// Handler to suspend and resume XCM execution</span>
+		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xcm-support&quot;</span>)]</span>
+		<span class="kw">type</span> <span class="ident">XcmExecutionManager</span>: <span class="ident">PauseXcmExecution</span>;
+		<span class="doccomment">/// The DMP handler to be used in normal operating mode</span>
+		<span class="doccomment">/// TODO: remove once https://github.com/paritytech/polkadot/pull/5035 is merged</span>
+		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xcm-support&quot;</span>)]</span>
+		<span class="kw">type</span> <span class="ident">NormalDmpHandler</span>: <span class="ident">DmpMessageHandler</span>;
+		<span class="doccomment">/// The DMP handler to be used in maintenance mode</span>
+		<span class="doccomment">/// TODO: remove once https://github.com/paritytech/polkadot/pull/5035 is merged</span>
+		<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xcm-support&quot;</span>)]</span>
+		<span class="kw">type</span> <span class="ident">MaintenanceDmpHandler</span>: <span class="ident">DmpMessageHandler</span>;
+		<span class="doccomment">/// The executive hooks that will be used in normal operating mode</span>
+		<span class="doccomment">/// Important: Use AllPalletsReversedWithSystemFirst here if you dont want to modify the</span>
+		<span class="doccomment">/// hooks behaviour</span>
+		<span class="kw">type</span> <span class="ident">NormalExecutiveHooks</span>: <span class="ident">OnRuntimeUpgrade</span>
+			<span class="op">+</span> <span class="ident">OnInitialize</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::BlockNumber</span><span class="op">&gt;</span>
+			<span class="op">+</span> <span class="ident">OnIdle</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::BlockNumber</span><span class="op">&gt;</span>
+			<span class="op">+</span> <span class="ident">OnFinalize</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::BlockNumber</span><span class="op">&gt;</span>
+			<span class="op">+</span> <span class="ident">OffchainWorker</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::BlockNumber</span><span class="op">&gt;</span>;
+		<span class="doccomment">/// The executive hooks that will be used in maintenance mode</span>
+		<span class="doccomment">/// Important: Use AllPalletsReversedWithSystemFirst here if you dont want to modify the</span>
+		<span class="doccomment">/// hooks behaviour</span>
+		<span class="kw">type</span> <span class="ident">MaitenanceExecutiveHooks</span>: <span class="ident">OnRuntimeUpgrade</span>
+			<span class="op">+</span> <span class="ident">OnInitialize</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::BlockNumber</span><span class="op">&gt;</span>
+			<span class="op">+</span> <span class="ident">OnIdle</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::BlockNumber</span><span class="op">&gt;</span>
+			<span class="op">+</span> <span class="ident">OnFinalize</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::BlockNumber</span><span class="op">&gt;</span>
+			<span class="op">+</span> <span class="ident">OffchainWorker</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::BlockNumber</span><span class="op">&gt;</span>;
 	}
 
 	<span class="attribute">#[<span class="ident">pallet::event</span>]</span>
@@ -282,6 +410,10 @@
 		<span class="ident">EnteredMaintenanceMode</span>,
 		<span class="doccomment">/// The chain returned to its normal operating state</span>
 		<span class="ident">NormalOperationResumed</span>,
+		<span class="doccomment">/// The call to suspend on_idle XCM execution failed with inner error</span>
+		<span class="ident">FailedToSuspendIdleXcmExecution</span> { <span class="ident">error</span>: <span class="ident">DispatchError</span> },
+		<span class="doccomment">/// The call to resume on_idle XCM execution failed with inner error</span>
+		<span class="ident">FailedToResumeIdleXcmExecution</span> { <span class="ident">error</span>: <span class="ident">DispatchError</span> },
 	}
 
 	<span class="doccomment">/// An error that can occur while executing this pallet&#39;s extrinsics.</span>
@@ -304,9 +436,9 @@
 		<span class="doccomment">///</span>
 		<span class="doccomment">/// Weight cost is:</span>
 		<span class="doccomment">/// * One DB read to ensure we&#39;re not already in maintenance mode</span>
-		<span class="doccomment">/// * Two DB writes - 1 for the mode and 1 for the event</span>
-		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="ident">T::DbWeight::get</span>().<span class="ident">read</span> <span class="op">+</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">T::DbWeight::get</span>().<span class="ident">write</span>)]</span>
-		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enter_maintenance_mode</span>(<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResultWithPostInfo</span> {
+		<span class="doccomment">/// * Three DB writes - 1 for the mode, 1 for suspending xcm execution, 1 for the event</span>
+		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="ident">T::DbWeight::get</span>().<span class="ident">read</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">T::DbWeight::get</span>().<span class="ident">write</span>)]</span>
+		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enter_maintenance_mode</span>(<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) -&gt; <span class="ident">DispatchResultWithPostInfo</span> {
 			<span class="comment">// Ensure Origin</span>
 			<span class="ident">T::MaintenanceOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
 
@@ -320,6 +452,10 @@
 
 			<span class="comment">// Write to storage</span>
 			<span class="ident">MaintenanceMode</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="bool-val">true</span>);
+			<span class="comment">// Suspend XCM execution</span>
+			<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">error</span>) <span class="op">=</span> <span class="ident">T::XcmExecutionManager::suspend_xcm_execution</span>() {
+				<span class="op">&lt;</span><span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::deposit_event</span>(<span class="ident">Event::FailedToSuspendIdleXcmExecution</span> { <span class="ident">error</span> });
+			}
 
 			<span class="comment">// Event</span>
 			<span class="op">&lt;</span><span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::deposit_event</span>(<span class="ident">Event::EnteredMaintenanceMode</span>);
@@ -331,9 +467,9 @@
 		<span class="doccomment">///</span>
 		<span class="doccomment">/// Weight cost is:</span>
 		<span class="doccomment">/// * One DB read to ensure we&#39;re in maintenance mode</span>
-		<span class="doccomment">/// * Two DB writes - 1 for the mode and 1 for the event</span>
-		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="ident">T::DbWeight::get</span>().<span class="ident">read</span> <span class="op">+</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">T::DbWeight::get</span>().<span class="ident">write</span>)]</span>
-		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resume_normal_operation</span>(<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResultWithPostInfo</span> {
+		<span class="doccomment">/// * Three DB writes - 1 for the mode, 1 for resuming xcm execution, 1 for the event</span>
+		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="ident">T::DbWeight::get</span>().<span class="ident">read</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">T::DbWeight::get</span>().<span class="ident">write</span>)]</span>
+		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resume_normal_operation</span>(<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) -&gt; <span class="ident">DispatchResultWithPostInfo</span> {
 			<span class="comment">// Ensure Origin</span>
 			<span class="ident">T::MaintenanceOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
 
@@ -347,6 +483,10 @@
 
 			<span class="comment">// Write to storage</span>
 			<span class="ident">MaintenanceMode</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="bool-val">false</span>);
+			<span class="comment">// Resume XCM execution</span>
+			<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">error</span>) <span class="op">=</span> <span class="ident">T::XcmExecutionManager::resume_xcm_execution</span>() {
+				<span class="op">&lt;</span><span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::deposit_event</span>(<span class="ident">Event::FailedToResumeIdleXcmExecution</span> { <span class="ident">error</span> });
+			}
 
 			<span class="comment">// Event</span>
 			<span class="op">&lt;</span><span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::deposit_event</span>(<span class="ident">Event::NormalOperationResumed</span>);
@@ -373,7 +513,7 @@
 	}
 
 	<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">Contains</span><span class="op">&lt;</span><span class="ident">T::Call</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-		<span class="kw">fn</span> <span class="ident">contains</span>(<span class="ident">call</span>: <span class="kw-2">&amp;</span><span class="ident">T::Call</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+		<span class="kw">fn</span> <span class="ident">contains</span>(<span class="ident">call</span>: <span class="kw-2">&amp;</span><span class="ident">T::Call</span>) -&gt; <span class="ident">bool</span> {
 			<span class="kw">if</span> <span class="ident">MaintenanceMode</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>() {
 				<span class="ident">T::MaintenanceCallFilter::contains</span>(<span class="ident">call</span>)
 			} <span class="kw">else</span> {
@@ -381,8 +521,20 @@
 			}
 		}
 	}
+	<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xcm-support&quot;</span>)]</span>
+	<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">DmpMessageHandler</span> <span class="kw">for</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+		<span class="kw">fn</span> <span class="ident">handle_dmp_messages</span>(
+			<span class="ident">iter</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> (<span class="ident">RelayBlockNumber</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
+			<span class="ident">limit</span>: <span class="ident">Weight</span>,
+		) -&gt; <span class="ident">Weight</span> {
+			<span class="kw">if</span> <span class="ident">MaintenanceMode</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>() {
+				<span class="ident">T::MaintenanceDmpHandler::handle_dmp_messages</span>(<span class="ident">iter</span>, <span class="ident">limit</span>)
+			} <span class="kw">else</span> {
+				<span class="ident">T::NormalDmpHandler::handle_dmp_messages</span>(<span class="ident">iter</span>, <span class="ident">limit</span>)
+			}
+		}
+	}
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="pallet_maintenance_mode" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="pallet_maintenance_mode" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (3b348d932 2022-02-19)" ></div>
 </body></html>

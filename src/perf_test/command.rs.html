@@ -1,4 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `node&#x2F;perf-test&#x2F;src&#x2F;command.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>command.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../perf_test/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `node/perf-test/src/command.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>command.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../perf_test/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../perf_test/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../perf_test/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -490,7 +495,42 @@
 <span id="490">490</span>
 <span id="491">491</span>
 <span id="492">492</span>
-</pre><pre class="rust"><code><span class="comment">// Copyright 2019-2021 PureStake Inc.</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+</pre><pre class="rust"><code><span class="comment">// Copyright 2019-2022 PureStake Inc.</span>
 <span class="comment">// This file is part of Moonbeam.</span>
 
 <span class="comment">// Moonbeam is free software: you can redistribute it and/or modify</span>
@@ -507,15 +547,16 @@
 <span class="comment">// along with Moonbeam.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{
-	<span class="ident">sysinfo</span>::{<span class="ident">query_partition_info</span>, <span class="ident">query_system_info</span>, <span class="ident">PartitionInfo</span>, <span class="ident">SystemInfo</span>},
 	<span class="ident">tests</span>::{<span class="ident">BlockCreationPerfTest</span>, <span class="ident">FibonacciPerfTest</span>, <span class="ident">StoragePerfTest</span>, <span class="ident">TestResults</span>, <span class="ident">TestRunner</span>},
 	<span class="ident">txn_signer::UnsignedTransaction</span>,
 	<span class="ident">PerfCmd</span>,
 };
 
-<span class="kw">use</span> <span class="ident">cumulus_primitives_parachain_inherent::MockValidationDataInherentDataProvider</span>;
+<span class="kw">use</span> <span class="ident">cumulus_primitives_parachain_inherent</span>::{
+	<span class="ident">MockValidationDataInherentDataProvider</span>, <span class="ident">MockXcmConfig</span>,
+};
 <span class="kw">use</span> <span class="ident">ethereum::TransactionAction</span>;
-<span class="kw">use</span> <span class="ident">fp_rpc</span>::{<span class="ident">ConvertTransaction</span>, <span class="ident">EthereumRuntimeRPCApi</span>};
+<span class="kw">use</span> <span class="ident">fp_rpc</span>::{<span class="ident">ConvertTransactionRuntimeApi</span>, <span class="ident">EthereumRuntimeRPCApi</span>};
 <span class="kw">use</span> <span class="ident">nimbus_primitives::NimbusId</span>;
 <span class="kw">use</span> <span class="ident">sc_cli</span>::{<span class="ident">CliConfiguration</span>, <span class="prelude-ty">Result</span> <span class="kw">as</span> <span class="ident">CliResult</span>, <span class="ident">SharedParams</span>};
 <span class="kw">use</span> <span class="ident">sc_client_api::HeaderBackend</span>;
@@ -525,16 +566,16 @@
 <span class="kw">use</span> <span class="ident">sp_api</span>::{<span class="ident">BlockId</span>, <span class="ident">ConstructRuntimeApi</span>, <span class="ident">ProvideRuntimeApi</span>};
 <span class="kw">use</span> <span class="ident">sp_core</span>::{<span class="ident">H160</span>, <span class="ident">H256</span>, <span class="ident">U256</span>};
 <span class="kw">use</span> <span class="ident">sp_runtime::transaction_validity::TransactionSource</span>;
-<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">fs::File</span>, <span class="ident">io::prelude</span>::<span class="kw-2">*</span>, <span class="ident">marker::PhantomData</span>, <span class="ident">path::PathBuf</span>, <span class="ident">sync::Arc</span>};
+<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">fs::File</span>, <span class="ident">io::prelude</span>::<span class="kw-2">*</span>, <span class="ident">marker::PhantomData</span>, <span class="ident">sync::Arc</span>};
 
 <span class="kw">use</span> <span class="ident">futures</span>::{
 	<span class="ident">channel</span>::{<span class="ident">mpsc</span>, <span class="ident">oneshot</span>},
 	<span class="ident">SinkExt</span>, <span class="ident">Stream</span>,
 };
 
-<span class="kw">use</span> <span class="ident">cli_table</span>::{<span class="ident">format::Justify</span>, <span class="ident">print_stdout</span>, <span class="ident">Cell</span>, <span class="ident">Style</span>, <span class="ident">Table</span>, <span class="ident">WithTitle</span>};
+<span class="kw">use</span> <span class="ident">cli_table</span>::{<span class="ident">print_stdout</span>, <span class="ident">WithTitle</span>};
 <span class="kw">use</span> <span class="ident">serde::Serialize</span>;
-<span class="kw">use</span> <span class="ident">service</span>::{<span class="ident">chain_spec</span>, <span class="ident">rpc</span>, <span class="ident">Block</span>, <span class="ident">RuntimeApiCollection</span>, <span class="ident">TransactionConverters</span>};
+<span class="kw">use</span> <span class="ident">service</span>::{<span class="ident">chain_spec</span>, <span class="ident">rpc</span>, <span class="ident">Block</span>, <span class="ident">RuntimeApiCollection</span>};
 <span class="kw">use</span> <span class="ident">sha3</span>::{<span class="ident">Digest</span>, <span class="ident">Keccak256</span>};
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">FullClient</span><span class="op">&lt;</span><span class="ident">RuntimeApi</span>, <span class="ident">Executor</span><span class="op">&gt;</span> <span class="op">=</span>
@@ -566,7 +607,7 @@
 		<span class="ident">RuntimeApiCollection</span><span class="op">&lt;</span><span class="ident">StateBackend</span> <span class="op">=</span> <span class="ident">sc_client_api::StateBackendFor</span><span class="op">&lt;</span><span class="ident">FullBackend</span>, <span class="ident">Block</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 	<span class="ident">Executor</span>: <span class="ident">NativeExecutionDispatch</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_cmd</span>(<span class="ident">config</span>: <span class="ident">Configuration</span>, <span class="ident">cmd</span>: <span class="kw-2">&amp;</span><span class="ident">PerfCmd</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CliResult</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_cmd</span>(<span class="kw-2">mut</span> <span class="ident">config</span>: <span class="ident">Configuration</span>, <span class="ident">_cmd</span>: <span class="kw-2">&amp;</span><span class="ident">PerfCmd</span>) -&gt; <span class="ident">CliResult</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
 		<span class="macro">println!</span>(<span class="string">&quot;perf-test from_cmd&quot;</span>);
 		<span class="kw">let</span> <span class="ident">sc_service::PartialComponents</span> {
 			<span class="ident">client</span>,
@@ -577,8 +618,15 @@
 			<span class="ident">select_chain</span>: <span class="ident">maybe_select_chain</span>,
 			<span class="ident">transaction_pool</span>,
 			<span class="ident">other</span>:
-				(<span class="ident">block_import</span>, <span class="ident">filter_pool</span>, <span class="ident">telemetry</span>, <span class="ident">_telemetry_worker_handle</span>, <span class="ident">frontier_backend</span>),
-		} <span class="op">=</span> <span class="ident">service::new_partial</span>::<span class="op">&lt;</span><span class="ident">RuntimeApi</span>, <span class="ident">Executor</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">config</span>, <span class="bool-val">true</span>)<span class="question-mark">?</span>;
+				(
+					<span class="ident">block_import</span>,
+					<span class="ident">filter_pool</span>,
+					<span class="ident">telemetry</span>,
+					<span class="ident">_telemetry_worker_handle</span>,
+					<span class="ident">frontier_backend</span>,
+					<span class="ident">fee_history_cache</span>,
+				),
+		} <span class="op">=</span> <span class="ident">service::new_partial</span>::<span class="op">&lt;</span><span class="ident">RuntimeApi</span>, <span class="ident">Executor</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">config</span>, <span class="bool-val">true</span>)<span class="question-mark">?</span>;
 
 		<span class="comment">// TODO: review -- we don&#39;t need any actual networking</span>
 		<span class="kw">let</span> (<span class="ident">network</span>, <span class="ident">system_rpc_tx</span>, <span class="ident">network_starter</span>) <span class="op">=</span>
@@ -588,7 +636,6 @@
 				<span class="ident">transaction_pool</span>: <span class="ident">transaction_pool</span>.<span class="ident">clone</span>(),
 				<span class="ident">spawn_handle</span>: <span class="ident">task_manager</span>.<span class="ident">spawn_handle</span>(),
 				<span class="ident">import_queue</span>,
-				<span class="ident">on_demand</span>: <span class="prelude-val">None</span>,
 				<span class="ident">block_announce_validator_builder</span>: <span class="prelude-val">None</span>,
 				<span class="ident">warp_sync</span>: <span class="prelude-val">None</span>,
 			})<span class="question-mark">?</span>;
@@ -600,18 +647,19 @@
 		<span class="comment">// TODO: no need for prometheus here...</span>
 		<span class="kw">let</span> <span class="ident">prometheus_registry</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">prometheus_registry</span>().<span class="ident">cloned</span>();
 
-		<span class="kw">let</span> <span class="ident">env</span> <span class="op">=</span> <span class="ident">sc_basic_authorship::ProposerFactory::new</span>(
+		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">env</span> <span class="op">=</span> <span class="ident">sc_basic_authorship::ProposerFactory::new</span>(
 			<span class="ident">task_manager</span>.<span class="ident">spawn_handle</span>(),
 			<span class="ident">client</span>.<span class="ident">clone</span>(),
 			<span class="ident">transaction_pool</span>.<span class="ident">clone</span>(),
 			<span class="ident">prometheus_registry</span>.<span class="ident">as_ref</span>(),
 			<span class="ident">telemetry</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">handle</span>()),
 		);
+		<span class="ident">env</span>.<span class="ident">set_soft_deadline</span>(<span class="ident">service::SOFT_DEADLINE_PERCENT</span>);
 
-		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">command_sink</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+		<span class="kw">let</span> <span class="ident">command_sink</span>;
 		<span class="kw">let</span> <span class="ident">command_stream</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Stream</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">EngineCommand</span><span class="op">&lt;</span><span class="ident">H256</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="ident">Unpin</span><span class="op">&gt;</span> <span class="op">=</span> {
 			<span class="kw">let</span> (<span class="ident">sink</span>, <span class="ident">stream</span>) <span class="op">=</span> <span class="ident">mpsc::channel</span>(<span class="number">1000</span>);
-			<span class="ident">command_sink</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">sink</span>);
+			<span class="ident">command_sink</span> <span class="op">=</span> <span class="ident">sink</span>;
 			<span class="ident">Box::new</span>(<span class="ident">stream</span>)
 		};
 
@@ -626,6 +674,7 @@
 		<span class="macro">log::debug!</span>(<span class="string">&quot;spawning authorship task...&quot;</span>);
 		<span class="ident">task_manager</span>.<span class="ident">spawn_essential_handle</span>().<span class="ident">spawn_blocking</span>(
 			<span class="string">&quot;authorship_task&quot;</span>,
+			<span class="prelude-val">Some</span>(<span class="string">&quot;block-authoring&quot;</span>),
 			<span class="ident">run_manual_seal</span>(<span class="ident">ManualSealParams</span> {
 				<span class="ident">block_import</span>,
 				<span class="ident">env</span>,
@@ -641,6 +690,8 @@
 						.<span class="ident">expect</span>(<span class="string">&quot;Header passed in as parent should be present in backend.&quot;</span>);
 					<span class="kw">let</span> <span class="ident">author_id</span> <span class="op">=</span> <span class="ident">author_id</span>.<span class="ident">clone</span>();
 
+					<span class="kw">let</span> <span class="ident">client_for_xcm</span> <span class="op">=</span> <span class="ident">client_set_aside_for_cidp</span>.<span class="ident">clone</span>();
+
 					<span class="kw">async</span> <span class="kw">move</span> {
 						<span class="kw">let</span> <span class="ident">time</span> <span class="op">=</span> <span class="ident">sp_timestamp::InherentDataProvider::from_system_time</span>();
 
@@ -648,6 +699,14 @@
 							<span class="ident">current_para_block</span>,
 							<span class="ident">relay_offset</span>: <span class="number">1000</span>,
 							<span class="ident">relay_blocks_per_para_block</span>: <span class="number">2</span>,
+							<span class="ident">raw_downward_messages</span>: <span class="ident">Vec::new</span>(),
+							<span class="ident">raw_horizontal_messages</span>: <span class="ident">Vec::new</span>(),
+							<span class="ident">xcm_config</span>: <span class="ident">MockXcmConfig::new</span>(
+								<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">client_for_xcm</span>,
+								<span class="ident">block</span>,
+								<span class="ident">Default::default</span>(),
+								<span class="ident">Default::default</span>(),
+							),
 						};
 
 						<span class="kw">let</span> <span class="ident">author</span> <span class="op">=</span> <span class="ident">nimbus_primitives::InherentDataProvider</span>::<span class="op">&lt;</span><span class="ident">NimbusId</span><span class="op">&gt;</span>(<span class="ident">author_id</span>);
@@ -660,16 +719,29 @@
 
 		<span class="kw">let</span> <span class="ident">subscription_task_executor</span> <span class="op">=</span>
 			<span class="ident">sc_rpc::SubscriptionTaskExecutor::new</span>(<span class="ident">task_manager</span>.<span class="ident">spawn_handle</span>());
+		<span class="kw">let</span> <span class="ident">overrides</span> <span class="op">=</span> <span class="ident">rpc::overrides_handle</span>(<span class="ident">client</span>.<span class="ident">clone</span>());
 
+		<span class="kw">let</span> <span class="ident">fee_history_limit</span> <span class="op">=</span> <span class="number">2048</span>;
 		<span class="ident">service::rpc::spawn_essential_tasks</span>(<span class="ident">service::rpc::SpawnTasksParams</span> {
 			<span class="ident">task_manager</span>: <span class="kw-2">&amp;</span><span class="ident">task_manager</span>,
 			<span class="ident">client</span>: <span class="ident">client</span>.<span class="ident">clone</span>(),
 			<span class="ident">substrate_backend</span>: <span class="ident">backend</span>.<span class="ident">clone</span>(),
 			<span class="ident">frontier_backend</span>: <span class="ident">frontier_backend</span>.<span class="ident">clone</span>(),
 			<span class="ident">filter_pool</span>: <span class="ident">filter_pool</span>.<span class="ident">clone</span>(),
+			<span class="ident">overrides</span>: <span class="ident">overrides</span>.<span class="ident">clone</span>(),
+			<span class="ident">fee_history_limit</span>,
+			<span class="ident">fee_history_cache</span>: <span class="ident">fee_history_cache</span>.<span class="ident">clone</span>(),
 		});
 
-		<span class="kw">let</span> <span class="ident">command_sink_for_deps</span> <span class="op">=</span> <span class="ident">command_sink</span>.<span class="ident">clone</span>();
+		<span class="kw">let</span> <span class="ident">command_sink_for_deps</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">command_sink</span>.<span class="ident">clone</span>());
+
+		<span class="kw">let</span> <span class="ident">block_data_cache</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">fc_rpc::EthBlockDataCacheTask::new</span>(
+			<span class="ident">task_manager</span>.<span class="ident">spawn_handle</span>(),
+			<span class="ident">overrides</span>.<span class="ident">clone</span>(),
+			<span class="number">3000</span>,
+			<span class="number">3000</span>,
+			<span class="ident">prometheus_registry</span>,
+		));
 
 		<span class="kw">let</span> <span class="ident">rpc_extensions_builder</span> <span class="op">=</span> {
 			<span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">clone</span>();
@@ -677,6 +749,9 @@
 			<span class="kw">let</span> <span class="ident">backend</span> <span class="op">=</span> <span class="ident">backend</span>.<span class="ident">clone</span>();
 			<span class="kw">let</span> <span class="ident">network</span> <span class="op">=</span> <span class="ident">network</span>.<span class="ident">clone</span>();
 			<span class="kw">let</span> <span class="ident">max_past_logs</span> <span class="op">=</span> <span class="number">1000</span>;
+			<span class="kw">let</span> <span class="ident">fee_history_cache</span> <span class="op">=</span> <span class="ident">fee_history_cache</span>.<span class="ident">clone</span>();
+			<span class="kw">let</span> <span class="ident">overrides</span> <span class="op">=</span> <span class="ident">overrides</span>.<span class="ident">clone</span>();
+			<span class="kw">let</span> <span class="ident">block_data_cache</span> <span class="op">=</span> <span class="ident">block_data_cache</span>.<span class="ident">clone</span>();
 
 			<span class="ident">Box::new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">deny_unsafe</span>, <span class="kw">_</span><span class="op">|</span> {
 				<span class="kw">let</span> <span class="ident">deps</span> <span class="op">=</span> <span class="ident">rpc::FullDeps</span> {
@@ -688,14 +763,15 @@
 					<span class="ident">network</span>: <span class="ident">network</span>.<span class="ident">clone</span>(),
 					<span class="ident">filter_pool</span>: <span class="ident">filter_pool</span>.<span class="ident">clone</span>(),
 					<span class="ident">ethapi_cmd</span>: <span class="ident">Default::default</span>(),
-					<span class="ident">eth_log_block_cache</span>: <span class="number">3000</span>,
 					<span class="ident">command_sink</span>: <span class="ident">command_sink_for_deps</span>.<span class="ident">clone</span>(),
 					<span class="ident">frontier_backend</span>: <span class="ident">frontier_backend</span>.<span class="ident">clone</span>(),
 					<span class="ident">backend</span>: <span class="ident">backend</span>.<span class="ident">clone</span>(),
 					<span class="ident">max_past_logs</span>,
-					<span class="ident">transaction_converter</span>: <span class="ident">TransactionConverters::Moonbase</span>(
-						<span class="ident">moonbase_runtime::TransactionConverter</span>,
-					),
+					<span class="ident">fee_history_limit</span>,
+					<span class="ident">fee_history_cache</span>: <span class="ident">fee_history_cache</span>.<span class="ident">clone</span>(),
+					<span class="ident">xcm_senders</span>: <span class="prelude-val">None</span>,
+					<span class="ident">overrides</span>: <span class="ident">overrides</span>.<span class="ident">clone</span>(),
+					<span class="ident">block_data_cache</span>: <span class="ident">block_data_cache</span>.<span class="ident">clone</span>(),
 				};
 				<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_mut</span>)]</span>
 				<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">io</span> <span class="op">=</span> <span class="ident">rpc::create_full</span>(<span class="ident">deps</span>, <span class="ident">subscription_task_executor</span>.<span class="ident">clone</span>());
@@ -707,11 +783,9 @@
 			<span class="ident">network</span>,
 			<span class="ident">client</span>: <span class="ident">client</span>.<span class="ident">clone</span>(),
 			<span class="ident">keystore</span>: <span class="ident">keystore_container</span>.<span class="ident">sync_keystore</span>(),
-			<span class="ident">task_manager</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">task_manager</span>,
+			<span class="ident">task_manager</span>: <span class="kw-2">&amp;mut</span> <span class="ident">task_manager</span>,
 			<span class="ident">transaction_pool</span>: <span class="ident">transaction_pool</span>.<span class="ident">clone</span>(),
 			<span class="ident">rpc_extensions_builder</span>,
-			<span class="ident">on_demand</span>: <span class="prelude-val">None</span>,
-			<span class="ident">remote_blockchain</span>: <span class="prelude-val">None</span>,
 			<span class="ident">backend</span>,
 			<span class="ident">system_rpc_tx</span>,
 			<span class="ident">config</span>,
@@ -723,14 +797,14 @@
 		<span class="prelude-val">Ok</span>(<span class="ident">TestContext</span> {
 			<span class="ident">_task_manager</span>: <span class="ident">task_manager</span>,
 			<span class="ident">client</span>: <span class="ident">client</span>.<span class="ident">clone</span>(),
-			<span class="ident">manual_seal_command_sink</span>: <span class="ident">command_sink</span>.<span class="ident">unwrap</span>(),
+			<span class="ident">manual_seal_command_sink</span>: <span class="ident">command_sink</span>,
 			<span class="ident">pool</span>: <span class="ident">transaction_pool</span>,
 			<span class="ident">_marker1</span>: <span class="ident">Default::default</span>(),
 			<span class="ident">_marker2</span>: <span class="ident">Default::default</span>(),
 		})
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_alice_details</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">AccountDetails</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_alice_details</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">AccountDetails</span> {
 		<span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
 
 		<span class="kw">let</span> <span class="ident">alice_address</span> <span class="op">=</span> <span class="ident">H160::from_str</span>(<span class="string">&quot;f24FF3a9CF04c71Dbc94D0b566f7A27B94566cac&quot;</span>)
@@ -762,9 +836,10 @@
 		<span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
 		<span class="ident">value</span>: <span class="ident">U256</span>,
 		<span class="ident">gas_limit</span>: <span class="ident">U256</span>,
-		<span class="ident">gas_price</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">U256</span><span class="op">&gt;</span>,
+		<span class="ident">max_fee_per_gas</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">U256</span><span class="op">&gt;</span>,
+		<span class="ident">max_priority_fee_per_gas</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">U256</span><span class="op">&gt;</span>,
 		<span class="ident">nonce</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">U256</span><span class="op">&gt;</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">fp_evm::CallInfo</span>, <span class="ident">sp_runtime::DispatchError</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">fp_evm::CallInfo</span>, <span class="ident">sp_runtime::DispatchError</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">client</span>.<span class="ident">info</span>().<span class="ident">best_hash</span>;
 		<span class="macro">log::info!</span>(<span class="string">&quot;evm_call best_hash: {:?}&quot;</span>, <span class="ident">hash</span>);
 
@@ -775,9 +850,11 @@
 			<span class="ident">data</span>,
 			<span class="ident">value</span>,
 			<span class="ident">gas_limit</span>,
-			<span class="ident">gas_price</span>,
+			<span class="ident">max_fee_per_gas</span>,
+			<span class="ident">max_priority_fee_per_gas</span>,
 			<span class="ident">nonce</span>,
 			<span class="bool-val">false</span>,
+			<span class="prelude-val">None</span>,
 		);
 
 		<span class="ident">result</span>.<span class="ident">expect</span>(<span class="string">&quot;why is this a Result&lt;Result&lt;...&gt;&gt;???&quot;</span>) <span class="comment">// TODO</span>
@@ -789,9 +866,10 @@
 		<span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
 		<span class="ident">value</span>: <span class="ident">U256</span>,
 		<span class="ident">gas_limit</span>: <span class="ident">U256</span>,
-		<span class="ident">gas_price</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">U256</span><span class="op">&gt;</span>,
+		<span class="ident">max_fee_per_gas</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">U256</span><span class="op">&gt;</span>,
+		<span class="ident">max_priority_fee_per_gas</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">U256</span><span class="op">&gt;</span>,
 		<span class="ident">nonce</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">U256</span><span class="op">&gt;</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">fp_evm::CreateInfo</span>, <span class="ident">sp_runtime::DispatchError</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">fp_evm::CreateInfo</span>, <span class="ident">sp_runtime::DispatchError</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">client</span>.<span class="ident">info</span>().<span class="ident">best_hash</span>;
 		<span class="macro">log::info!</span>(<span class="string">&quot;evm_create best_hash: {:?}&quot;</span>, <span class="ident">hash</span>);
 
@@ -801,9 +879,11 @@
 			<span class="ident">data</span>,
 			<span class="ident">value</span>,
 			<span class="ident">gas_limit</span>,
-			<span class="ident">gas_price</span>,
+			<span class="ident">max_fee_per_gas</span>,
+			<span class="ident">max_priority_fee_per_gas</span>,
 			<span class="ident">nonce</span>,
 			<span class="bool-val">false</span>,
+			<span class="prelude-val">None</span>,
 		);
 
 		<span class="ident">result</span>.<span class="ident">expect</span>(<span class="string">&quot;why is this a Result&lt;Result&lt;...&gt;&gt;???&quot;</span>) <span class="comment">// TODO</span>
@@ -819,12 +899,12 @@
 		<span class="ident">gas_limit</span>: <span class="ident">U256</span>,
 		<span class="ident">gas_price</span>: <span class="ident">U256</span>,
 		<span class="ident">nonce</span>: <span class="ident">U256</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">H256</span>, <span class="ident">sp_runtime::DispatchError</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">H256</span>, <span class="ident">sp_runtime::DispatchError</span><span class="op">&gt;</span> {
 		<span class="kw">const</span> <span class="ident">CHAIN_ID</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1281</span>; <span class="comment">// TODO: derive from CLI or from Moonbase</span>
 
 		<span class="kw">let</span> <span class="ident">action</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">to</span> {
-			<span class="prelude-val">Some</span>(<span class="ident">addr</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">TransactionAction::Call</span>(<span class="ident">addr</span>),
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">TransactionAction::Create</span>,
+			<span class="prelude-val">Some</span>(<span class="ident">addr</span>) =&gt; <span class="ident">TransactionAction::Call</span>(<span class="ident">addr</span>),
+			<span class="prelude-val">None</span> =&gt; <span class="ident">TransactionAction::Create</span>,
 		};
 
 		<span class="kw">let</span> <span class="ident">unsigned</span> <span class="op">=</span> <span class="ident">UnsignedTransaction</span> {
@@ -841,28 +921,28 @@
 		<span class="kw">let</span> <span class="ident">transaction_hash</span> <span class="op">=</span>
 			<span class="ident">H256::from_slice</span>(<span class="ident">Keccak256::digest</span>(<span class="kw-2">&amp;</span><span class="ident">rlp::encode</span>(<span class="kw-2">&amp;</span><span class="ident">signed</span>)).<span class="ident">as_slice</span>());
 
-		<span class="kw">let</span> <span class="ident">transaction_converter</span> <span class="op">=</span> <span class="ident">moonbase_runtime::TransactionConverter</span>;
-		<span class="kw">let</span> <span class="ident">unchecked_extrinsic</span> <span class="op">=</span> <span class="ident">transaction_converter</span>.<span class="ident">convert_transaction</span>(<span class="ident">signed</span>);
+		<span class="kw">let</span> <span class="ident">block_hash</span> <span class="op">=</span> <span class="ident">BlockId::hash</span>(<span class="self">self</span>.<span class="ident">client</span>.<span class="ident">info</span>().<span class="ident">best_hash</span>);
+		<span class="macro">log::debug!</span>(<span class="string">&quot;eth_sign_and_send_transaction best_hash: {:?}&quot;</span>, <span class="ident">block_hash</span>);
 
-		<span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">client</span>.<span class="ident">info</span>().<span class="ident">best_hash</span>;
-		<span class="macro">log::debug!</span>(<span class="string">&quot;eth_sign_and_send_transaction best_hash: {:?}&quot;</span>, <span class="ident">hash</span>);
-		<span class="kw">let</span> <span class="ident">future</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pool</span>.<span class="ident">submit_one</span>(
-			<span class="kw-2">&amp;</span><span class="ident">BlockId::hash</span>(<span class="ident">hash</span>),
-			<span class="ident">TransactionSource::Local</span>,
-			<span class="ident">unchecked_extrinsic</span>,
-		);
+		<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
+		<span class="kw">let</span> <span class="ident">extrinsic</span> <span class="op">=</span> <span class="self">self</span>
+			.<span class="ident">client</span>
+			.<span class="ident">runtime_api</span>()
+			.<span class="ident">convert_transaction_before_version_2</span>(<span class="kw-2">&amp;</span><span class="ident">block_hash</span>, <span class="ident">signed</span>)
+			.<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="string">&quot;ConvertTransactionRuntimeApi not found&quot;</span>)<span class="question-mark">?</span>;
 
-		<span class="ident">futures::executor::block_on</span>(<span class="ident">future</span>);
+		<span class="kw">let</span> <span class="ident">future</span> <span class="op">=</span> <span class="self">self</span>
+			.<span class="ident">pool</span>
+			.<span class="ident">submit_one</span>(<span class="kw-2">&amp;</span><span class="ident">block_hash</span>, <span class="ident">TransactionSource::Local</span>, <span class="ident">extrinsic</span>);
+
+		<span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">futures::executor::block_on</span>(<span class="ident">future</span>);
 
 		<span class="prelude-val">Ok</span>(<span class="ident">transaction_hash</span>)
 	}
 
 	<span class="doccomment">/// Author a block through manual sealing</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">create_empty</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CreatedBlock</span><span class="op">&lt;</span><span class="ident">H256</span><span class="op">&gt;</span> {
-		<span class="comment">// TODO: Joshy&#39;s idea: call into propose_with() directly (or similar) rather than go through</span>
-		<span class="comment">// manual seal</span>
-
-		<span class="macro">log::debug!</span>(<span class="string">&quot;Issuing seal command...&quot;</span>);
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">create_empty</span>: <span class="ident">bool</span>) -&gt; <span class="ident">CreatedBlock</span><span class="op">&lt;</span><span class="ident">H256</span><span class="op">&gt;</span> {
+		<span class="macro">log::trace!</span>(<span class="string">&quot;Issuing seal command...&quot;</span>);
 		<span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">client</span>.<span class="ident">info</span>().<span class="ident">best_hash</span>;
 
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sink</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">manual_seal_command_sink</span>.<span class="ident">clone</span>();
@@ -872,19 +952,17 @@
 			<span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span> <span class="ident">EngineCommand::SealNewBlock</span> {
 				<span class="ident">create_empty</span>,
 				<span class="ident">finalize</span>: <span class="bool-val">true</span>,
-				<span class="comment">// TODO: why did I change these (compared to the --dev in crate service)?</span>
-				<span class="comment">//       try changing them to be similar to --dev...</span>
 				<span class="ident">parent_hash</span>: <span class="prelude-val">Some</span>(<span class="ident">hash</span>),
 				<span class="ident">sender</span>: <span class="prelude-val">Some</span>(<span class="ident">sender</span>),
 			};
-			<span class="ident">sink</span>.<span class="ident">send</span>(<span class="ident">command</span>).<span class="kw">await</span>;
+			<span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">sink</span>.<span class="ident">send</span>(<span class="ident">command</span>).<span class="kw">await</span>;
 			<span class="ident">receiver</span>.<span class="kw">await</span>
 		};
 
 		<span class="macro">log::trace!</span>(<span class="string">&quot;waiting for SealNewBlock command to resolve...&quot;</span>);
 		<span class="ident">futures::executor::block_on</span>(<span class="ident">future</span>)
+			.<span class="ident">expect</span>(<span class="string">&quot;block_on failed&quot;</span>)
 			.<span class="ident">expect</span>(<span class="string">&quot;Failed to receive SealNewBlock response&quot;</span>)
-			.<span class="ident">expect</span>(<span class="string">&quot;we have two layers of results, apparently&quot;</span>)
 	}
 }
 
@@ -897,7 +975,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CliConfiguration</span> <span class="kw">for</span> <span class="ident">PerfCmd</span> {
-	<span class="kw">fn</span> <span class="ident">shared_params</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">SharedParams</span> {
+	<span class="kw">fn</span> <span class="ident">shared_params</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">SharedParams</span> {
 		<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">shared_params</span>
 	}
 
@@ -914,12 +992,7 @@
 
 <span class="kw">impl</span> <span class="ident">PerfCmd</span> {
 	<span class="comment">// taking a different approach and starting a full dev service</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span><span class="op">&lt;</span><span class="ident">RuntimeApi</span>, <span class="ident">Executor</span><span class="op">&gt;</span>(
-		<span class="kw-2">&amp;</span><span class="self">self</span>,
-		<span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">PathBuf</span>,
-		<span class="ident">cmd</span>: <span class="kw-2">&amp;</span><span class="ident">PerfCmd</span>,
-		<span class="ident">config</span>: <span class="ident">Configuration</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CliResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span><span class="op">&lt;</span><span class="ident">RuntimeApi</span>, <span class="ident">Executor</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cmd</span>: <span class="kw-2">&amp;</span><span class="ident">PerfCmd</span>, <span class="ident">config</span>: <span class="ident">Configuration</span>) -&gt; <span class="ident">CliResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
 	<span class="kw">where</span>
 		<span class="ident">RuntimeApi</span>:
 			<span class="ident">ConstructRuntimeApi</span><span class="op">&lt;</span><span class="ident">Block</span>, <span class="ident">FullClient</span><span class="op">&lt;</span><span class="ident">RuntimeApi</span>, <span class="ident">Executor</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -942,31 +1015,33 @@
 
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">all_test_results</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TestResults</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Default::default</span>();
 
-		<span class="kw">for</span> <span class="kw-2">mut</span> <span class="ident">test</span> <span class="kw">in</span> <span class="ident">tests</span> {
-			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">results</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TestResults</span><span class="op">&gt;</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">test</span>.<span class="ident">run</span>(<span class="kw-2">&amp;</span><span class="ident">runner</span>)<span class="question-mark">?</span>).<span class="ident">to_vec</span>();
-			<span class="ident">all_test_results</span>.<span class="ident">append</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">results</span>);
-		}
+		<span class="kw">let</span> (<span class="ident">have_filter</span>, <span class="ident">enabled_tests</span>) <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">filter</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">cmd</span>.<span class="ident">tests</span> {
+			<span class="kw">let</span> <span class="ident">enabled_tests</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">filter</span>.<span class="ident">split</span>(<span class="string">&#39;,&#39;</span>).<span class="ident">collect</span>();
+			(<span class="bool-val">true</span>, <span class="ident">enabled_tests</span>)
+		} <span class="kw">else</span> {
+			(<span class="bool-val">false</span>, <span class="ident">Default::default</span>())
+		};
 
-		<span class="kw">let</span> <span class="ident">system_info</span> <span class="op">=</span> <span class="ident">query_system_info</span>()<span class="question-mark">?</span>;
-		<span class="kw">let</span> <span class="ident">partition_info</span> <span class="op">=</span> <span class="ident">query_partition_info</span>(<span class="ident">path</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
-			<span class="comment">// TODO: this is inconsistent with behavior of query_system_info...</span>
-			<span class="macro">eprintln!</span>(<span class="string">&quot;query_partition_info() failed, ignoring...&quot;</span>);
-			<span class="ident">Default::default</span>()
-		});
+		<span class="kw">for</span> <span class="kw-2">mut</span> <span class="ident">test</span> <span class="kw">in</span> <span class="ident">tests</span> {
+			<span class="kw">if</span> <span class="ident">have_filter</span> {
+				<span class="kw">if</span> <span class="op">!</span><span class="ident">enabled_tests</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">test</span>.<span class="ident">name</span>().<span class="ident">as_str</span>()) {
+					<span class="kw">continue</span>;
+				}
+			}
+			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">results</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TestResults</span><span class="op">&gt;</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">test</span>.<span class="ident">run</span>(<span class="kw-2">&amp;</span><span class="ident">runner</span>)<span class="question-mark">?</span>).<span class="ident">to_vec</span>();
+			<span class="ident">all_test_results</span>.<span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="ident">results</span>);
+		}
 
 		<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>)]</span>
 		<span class="kw">struct</span> <span class="ident">AllResults</span> {
 			<span class="ident">test_results</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TestResults</span><span class="op">&gt;</span>,
-			<span class="ident">system_info</span>: <span class="ident">SystemInfo</span>,
-			<span class="ident">partition_info</span>: <span class="ident">PartitionInfo</span>,
 		}
 
 		<span class="kw">let</span> <span class="ident">all_results</span> <span class="op">=</span> <span class="ident">AllResults</span> {
 			<span class="ident">test_results</span>: <span class="ident">all_test_results</span>.<span class="ident">clone</span>(),
-			<span class="ident">system_info</span>,
-			<span class="ident">partition_info</span>,
 		};
-		<span class="kw">let</span> <span class="ident">results_str</span> <span class="op">=</span> <span class="ident">serde_json::to_string_pretty</span>(<span class="kw-2">&amp;</span><span class="ident">all_results</span>).<span class="ident">unwrap</span>();
+		<span class="kw">let</span> <span class="ident">results_str</span> <span class="op">=</span>
+			<span class="ident">serde_json::to_string_pretty</span>(<span class="kw-2">&amp;</span><span class="ident">all_results</span>).<span class="ident">expect</span>(<span class="string">&quot;fail to serialize AllResults&quot;</span>);
 
 		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">target</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">cmd</span>.<span class="ident">output_file</span> {
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">File::create</span>(<span class="ident">target</span>)<span class="question-mark">?</span>;
@@ -983,6 +1058,5 @@
 	}
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="perf_test" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="perf_test" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (3b348d932 2022-02-19)" ></div>
 </body></html>

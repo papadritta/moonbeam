@@ -1,4 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `pallets&#x2F;asset-manager&#x2F;src&#x2F;lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../pallet_asset_manager/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `pallets/asset-manager/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../pallet_asset_manager/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../pallet_asset_manager/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../pallet_asset_manager/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -178,7 +183,507 @@
 <span id="178">178</span>
 <span id="179">179</span>
 <span id="180">180</span>
-</pre><pre class="rust"><code><span class="comment">// Copyright 2019-2021 PureStake Inc.</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
+<span id="395">395</span>
+<span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
+<span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
+<span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
+<span id="570">570</span>
+<span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
+<span id="590">590</span>
+<span id="591">591</span>
+<span id="592">592</span>
+<span id="593">593</span>
+<span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
+<span id="597">597</span>
+<span id="598">598</span>
+<span id="599">599</span>
+<span id="600">600</span>
+<span id="601">601</span>
+<span id="602">602</span>
+<span id="603">603</span>
+<span id="604">604</span>
+<span id="605">605</span>
+<span id="606">606</span>
+<span id="607">607</span>
+<span id="608">608</span>
+<span id="609">609</span>
+<span id="610">610</span>
+<span id="611">611</span>
+<span id="612">612</span>
+<span id="613">613</span>
+<span id="614">614</span>
+<span id="615">615</span>
+<span id="616">616</span>
+<span id="617">617</span>
+<span id="618">618</span>
+<span id="619">619</span>
+<span id="620">620</span>
+<span id="621">621</span>
+<span id="622">622</span>
+<span id="623">623</span>
+<span id="624">624</span>
+<span id="625">625</span>
+<span id="626">626</span>
+<span id="627">627</span>
+<span id="628">628</span>
+<span id="629">629</span>
+<span id="630">630</span>
+<span id="631">631</span>
+<span id="632">632</span>
+<span id="633">633</span>
+<span id="634">634</span>
+<span id="635">635</span>
+<span id="636">636</span>
+<span id="637">637</span>
+<span id="638">638</span>
+<span id="639">639</span>
+<span id="640">640</span>
+<span id="641">641</span>
+<span id="642">642</span>
+<span id="643">643</span>
+<span id="644">644</span>
+<span id="645">645</span>
+<span id="646">646</span>
+<span id="647">647</span>
+<span id="648">648</span>
+<span id="649">649</span>
+<span id="650">650</span>
+<span id="651">651</span>
+<span id="652">652</span>
+<span id="653">653</span>
+<span id="654">654</span>
+<span id="655">655</span>
+<span id="656">656</span>
+<span id="657">657</span>
+<span id="658">658</span>
+<span id="659">659</span>
+<span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
+<span id="669">669</span>
+<span id="670">670</span>
+<span id="671">671</span>
+<span id="672">672</span>
+<span id="673">673</span>
+<span id="674">674</span>
+<span id="675">675</span>
+<span id="676">676</span>
+<span id="677">677</span>
+<span id="678">678</span>
+<span id="679">679</span>
+<span id="680">680</span>
+</pre><pre class="rust"><code><span class="comment">// Copyright 2019-2022 PureStake Inc.</span>
 <span class="comment">// This file is part of Moonbeam.</span>
 
 <span class="comment">// Moonbeam is free software: you can redistribute it and/or modify</span>
@@ -199,59 +704,148 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This pallet allows to register new assets if certain conditions are met</span>
 <span class="doccomment">//! The main goal of this pallet is to allow moonbeam to register XCM assets</span>
+<span class="doccomment">//! and control the creation of local assets</span>
 <span class="doccomment">//! The assumption is we work with AssetTypes, which can then be comperted to AssetIds</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! This pallet has two storage items: AssetIdType, which holds a mapping from AssetId-&gt;AssetType</span>
-<span class="doccomment">//! AssetIdUnitsPerSecond: an AssetId-&gt;u128 mapping that holds how much each AssetId should be</span>
-<span class="doccomment">//! charged per unit of second, in the case such an Asset is received as a XCM asset.</span>
+<span class="doccomment">//! This pallet has five storage items: AssetIdType, which holds a mapping from AssetId-&gt;AssetType</span>
+<span class="doccomment">//! AssetTypeUnitsPerSecond: an AssetType-&gt;u128 mapping that holds how much each AssetType should</span>
+<span class="doccomment">//! be charged per unit of second, in the case such an Asset is received as a XCM asset. Finally,</span>
+<span class="doccomment">//! AssetTypeId holds a mapping from AssetType -&gt; AssetId. LocalAssetCounter</span>
+<span class="doccomment">//! which holds the counter of local assets that have been created so far. And LocalAssetDeposit,</span>
+<span class="doccomment">//! which holds a mapping between assetId and assetInfo, i.e., the asset creator (from which</span>
+<span class="doccomment">//! we take the deposit) and the deposit amount itself.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! This pallet has two extrinsics: register_asset, which registers an Asset in this pallet and</span>
-<span class="doccomment">//! creates the asset as dictated by the AssetRegistrar trait. set_asset_units_per_second: which</span>
-<span class="doccomment">//! sets the unit per second that should be charged for a particular asset.</span>
+<span class="doccomment">//! This pallet has eight extrinsics: register_foreign_asset, which registers a foreign</span>
+<span class="doccomment">//! asset in this pallet and creates the asset as dictated by the AssetRegistrar trait.</span>
+<span class="doccomment">//! set_asset_units_per_second: which sets the unit per second that should be charged for</span>
+<span class="doccomment">//! a particular asset.</span>
+<span class="doccomment">//! change_existing_asset_type: which allows to update the correspondence between AssetId and</span>
+<span class="doccomment">//! AssetType</span>
+<span class="doccomment">//! remove_supported_asset: which removes an asset from the supported assets for fee payment</span>
+<span class="doccomment">//! remove_existing_asset_type: which removes a mapping from a foreign asset to an assetId</span>
+<span class="doccomment">//! register_local_asset: which creates a local asset with a specific owner</span>
+<span class="doccomment">//! destroy_foreign_asset: which destroys a foreign asset and all its associated data</span>
+<span class="doccomment">//! destroy_local_asset: which destroys a local asset and all its associated data</span>
 
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>), <span class="ident">no_std</span>)]</span>
 
 <span class="kw">use</span> <span class="ident">frame_support::pallet</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">pallet</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">test</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;runtime-benchmarks&quot;</span>))]</span>
+<span class="kw">mod</span> <span class="ident">benchmarks</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">migrations</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mock</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tests</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">weights</span>;
 
 <span class="attribute">#[<span class="ident">pallet</span>]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">pallet</span> {
 
-	<span class="kw">use</span> <span class="ident">frame_support</span>::{<span class="ident">pallet_prelude</span>::<span class="kw-2">*</span>, <span class="ident">PalletId</span>};
+	<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::weights::WeightInfo</span>;
+	<span class="kw">use</span> <span class="ident">frame_support</span>::{
+		<span class="ident">pallet_prelude</span>::<span class="kw-2">*</span>,
+		<span class="ident">traits</span>::{<span class="ident">Currency</span>, <span class="ident">ReservableCurrency</span>},
+		<span class="ident">PalletId</span>,
+	};
 	<span class="kw">use</span> <span class="ident">frame_system::pallet_prelude</span>::<span class="kw-2">*</span>;
 	<span class="kw">use</span> <span class="ident">parity_scale_codec::HasCompact</span>;
 	<span class="kw">use</span> <span class="ident">sp_runtime::traits</span>::{<span class="ident">AccountIdConversion</span>, <span class="ident">AtLeast32BitUnsigned</span>};
+	<span class="kw">use</span> <span class="ident">sp_std::vec::Vec</span>;
 
 	<span class="attribute">#[<span class="ident">pallet::pallet</span>]</span>
+	<span class="attribute">#[<span class="ident">pallet::without_storage_info</span>]</span>
 	<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">PhantomData</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
 
 	<span class="doccomment">/// The AssetManagers&#39;s pallet id</span>
 	<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PALLET_ID</span>: <span class="ident">PalletId</span> <span class="op">=</span> <span class="ident">PalletId</span>(<span class="kw-2">*</span><span class="string">b&quot;asstmngr&quot;</span>);
 
+	<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type</span> <span class="ident">DepositBalanceOf</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span>
+		<span class="op">&lt;</span><span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">Config</span><span class="op">&gt;</span><span class="ident">::Currency</span> <span class="kw">as</span> <span class="ident">Currency</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">frame_system::Config</span><span class="op">&gt;</span><span class="ident">::AccountId</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Balance</span>;
+
+	<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Clone</span>, <span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">RuntimeDebug</span>, <span class="ident">PartialEq</span>, <span class="ident">scale_info::TypeInfo</span>)]</span>
+	<span class="attribute">#[<span class="ident">scale_info</span>(<span class="ident">skip_type_params</span>(<span class="ident">T</span>))]</span>
+	<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AssetInfo</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> {
+		<span class="kw">pub</span> <span class="ident">creator</span>: <span class="ident">T::AccountId</span>,
+		<span class="kw">pub</span> <span class="ident">deposit</span>: <span class="ident">DepositBalanceOf</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+	}
+
 	<span class="comment">// The registrar trait. We need to comply with this</span>
 	<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">AssetRegistrar</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> {
-		<span class="comment">// How to create an asset</span>
-		<span class="kw">fn</span> <span class="ident">create_asset</span>(
-			<span class="ident">asset</span>: <span class="ident">T::AssetId</span>,
-			<span class="ident">min_balance</span>: <span class="ident">T::Balance</span>,
-			<span class="ident">metadata</span>: <span class="ident">T::AssetRegistrarMetadata</span>,
-		) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResult</span>;
+		<span class="comment">// How to create a foreign asset, meaning an asset whose reserve chain</span>
+		<span class="comment">// is not our chain</span>
+		<span class="kw">fn</span> <span class="ident">create_foreign_asset</span>(
+			<span class="ident">_asset</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">_min_balance</span>: <span class="ident">T::Balance</span>,
+			<span class="ident">_metadata</span>: <span class="ident">T::AssetRegistrarMetadata</span>,
+			<span class="comment">// Wether or not an asset-receiving account increments the sufficient counter</span>
+			<span class="ident">_is_sufficient</span>: <span class="ident">bool</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="macro">unimplemented!</span>()
+		}
+
+		<span class="comment">// Create a local asset, meaning an asset whose reserve chain is our chain</span>
+		<span class="comment">// These are created as non-sufficent by default</span>
+		<span class="kw">fn</span> <span class="ident">create_local_asset</span>(
+			<span class="ident">_asset</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">_account</span>: <span class="ident">T::AccountId</span>,
+			<span class="ident">_min_balance</span>: <span class="ident">T::Balance</span>,
+			<span class="ident">_is_sufficient</span>: <span class="ident">bool</span>,
+			<span class="ident">_owner</span>: <span class="ident">T::AccountId</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="macro">unimplemented!</span>()
+		}
+
+		<span class="comment">// How to destroy a foreign asset</span>
+		<span class="kw">fn</span> <span class="ident">destroy_foreign_asset</span>(
+			<span class="ident">_asset</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">_witness</span>: <span class="ident">T::AssetDestroyWitness</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="macro">unimplemented!</span>()
+		}
+
+		<span class="comment">// How to destroy a local asset</span>
+		<span class="kw">fn</span> <span class="ident">destroy_local_asset</span>(
+			<span class="ident">_asset</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">_witness</span>: <span class="ident">T::AssetDestroyWitness</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="macro">unimplemented!</span>()
+		}
+
+		<span class="comment">// Get destroy asset weight dispatch info</span>
+		<span class="kw">fn</span> <span class="ident">destroy_asset_dispatch_info_weight</span>(
+			<span class="ident">_asset</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">_witness</span>: <span class="ident">T::AssetDestroyWitness</span>,
+		) -&gt; <span class="ident">Weight</span>;
+	}
+
+	<span class="comment">// The local asset id creator. We cannot let users choose assetIds for their assets</span>
+	<span class="comment">// because they can look for collisions in the EVM.</span>
+	<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">LocalAssetIdCreator</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> {
+		<span class="comment">// How to create an assetId from the local asset counter</span>
+		<span class="kw">fn</span> <span class="ident">create_asset_id_from_metadata</span>(<span class="ident">local_asset_counter</span>: <span class="ident">u128</span>) -&gt; <span class="ident">T::AssetId</span>;
 	}
 
 	<span class="comment">// We implement this trait to be able to get the AssetType and units per second registered</span>
-	<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">xcm_primitives::AssetTypeGetter</span><span class="op">&lt;</span><span class="ident">T::AssetId</span>, <span class="ident">T::AssetType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-		<span class="kw">fn</span> <span class="ident">get_asset_type</span>(<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T::AssetType</span><span class="op">&gt;</span> {
+	<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">xcm_primitives::AssetTypeGetter</span><span class="op">&lt;</span><span class="ident">T::AssetId</span>, <span class="ident">T::ForeignAssetType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+		<span class="kw">fn</span> <span class="ident">get_asset_type</span>(<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T::ForeignAssetType</span><span class="op">&gt;</span> {
 			<span class="ident">AssetIdType</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="ident">asset_id</span>)
+		}
+
+		<span class="kw">fn</span> <span class="ident">get_asset_id</span>(<span class="ident">asset_type</span>: <span class="ident">T::ForeignAssetType</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T::AssetId</span><span class="op">&gt;</span> {
+			<span class="ident">AssetTypeId</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="ident">asset_type</span>)
 		}
 	}
 
-	<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">xcm_primitives::UnitsToWeightRatio</span><span class="op">&lt;</span><span class="ident">T::AssetId</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-		<span class="kw">fn</span> <span class="ident">get_units_per_second</span>(<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u128</span><span class="op">&gt;</span> {
-			<span class="ident">AssetIdUnitsPerSecond</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="ident">asset_id</span>)
+	<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">xcm_primitives::UnitsToWeightRatio</span><span class="op">&lt;</span><span class="ident">T::ForeignAssetType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+		<span class="kw">fn</span> <span class="ident">payment_is_supported</span>(<span class="ident">asset_type</span>: <span class="ident">T::ForeignAssetType</span>) -&gt; <span class="ident">bool</span> {
+			<span class="ident">SupportedFeePaymentAssets</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>()
+				.<span class="ident">binary_search</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>)
+				.<span class="ident">is_ok</span>()
+		}
+		<span class="kw">fn</span> <span class="ident">get_units_per_second</span>(<span class="ident">asset_type</span>: <span class="ident">T::ForeignAssetType</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u128</span><span class="op">&gt;</span> {
+			<span class="ident">AssetTypeUnitsPerSecond</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="ident">asset_type</span>)
 		}
 	}
 
@@ -263,10 +857,10 @@
 		<span class="kw">type</span> <span class="ident">AssetId</span>: <span class="ident">Member</span> <span class="op">+</span> <span class="ident">Parameter</span> <span class="op">+</span> <span class="ident">Default</span> <span class="op">+</span> <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">HasCompact</span> <span class="op">+</span> <span class="ident">MaxEncodedLen</span>;
 
 		<span class="doccomment">/// The Asset Metadata we want to store</span>
-		<span class="kw">type</span> <span class="ident">AssetRegistrarMetadata</span>: <span class="ident">Member</span> <span class="op">+</span> <span class="ident">Parameter</span>;
+		<span class="kw">type</span> <span class="ident">AssetRegistrarMetadata</span>: <span class="ident">Member</span> <span class="op">+</span> <span class="ident">Parameter</span> <span class="op">+</span> <span class="ident">Default</span>;
 
-		<span class="doccomment">/// The Asset Kind.</span>
-		<span class="kw">type</span> <span class="ident">AssetType</span>: <span class="ident">Parameter</span> <span class="op">+</span> <span class="ident">Member</span> <span class="op">+</span> <span class="ident">Ord</span> <span class="op">+</span> <span class="ident">PartialOrd</span> <span class="op">+</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::AssetId</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Default</span>;
+		<span class="doccomment">/// The Foreign Asset Kind.</span>
+		<span class="kw">type</span> <span class="ident">ForeignAssetType</span>: <span class="ident">Parameter</span> <span class="op">+</span> <span class="ident">Member</span> <span class="op">+</span> <span class="ident">Ord</span> <span class="op">+</span> <span class="ident">PartialOrd</span> <span class="op">+</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::AssetId</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Default</span>;
 
 		<span class="doccomment">/// The units in which we record balances.</span>
 		<span class="kw">type</span> <span class="ident">Balance</span>: <span class="ident">Member</span> <span class="op">+</span> <span class="ident">Parameter</span> <span class="op">+</span> <span class="ident">AtLeast32BitUnsigned</span> <span class="op">+</span> <span class="ident">Default</span> <span class="op">+</span> <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">MaxEncodedLen</span>;
@@ -274,8 +868,26 @@
 		<span class="doccomment">/// The trait we use to register Assets</span>
 		<span class="kw">type</span> <span class="ident">AssetRegistrar</span>: <span class="ident">AssetRegistrar</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
 
-		<span class="doccomment">/// Origin that is allowed to create and modify asset information</span>
-		<span class="kw">type</span> <span class="ident">AssetModifierOrigin</span>: <span class="ident">EnsureOrigin</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Origin</span><span class="op">&gt;</span>;
+		<span class="doccomment">/// Origin that is allowed to create and modify asset information for foreign assets</span>
+		<span class="kw">type</span> <span class="ident">ForeignAssetModifierOrigin</span>: <span class="ident">EnsureOrigin</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Origin</span><span class="op">&gt;</span>;
+
+		<span class="doccomment">/// Origin that is allowed to create and modify asset information for local assets</span>
+		<span class="kw">type</span> <span class="ident">LocalAssetModifierOrigin</span>: <span class="ident">EnsureOrigin</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Origin</span><span class="op">&gt;</span>;
+
+		<span class="doccomment">/// Ways of creating local asset Ids</span>
+		<span class="kw">type</span> <span class="ident">LocalAssetIdCreator</span>: <span class="ident">LocalAssetIdCreator</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
+
+		<span class="doccomment">/// The asset destroy Witness</span>
+		<span class="kw">type</span> <span class="ident">AssetDestroyWitness</span>: <span class="ident">Member</span> <span class="op">+</span> <span class="ident">Parameter</span> <span class="op">+</span> <span class="ident">Copy</span>;
+
+		<span class="doccomment">/// The currency mechanism in which we reserve deposits for local assets.</span>
+		<span class="kw">type</span> <span class="ident">Currency</span>: <span class="ident">ReservableCurrency</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::AccountId</span><span class="op">&gt;</span>;
+
+		<span class="doccomment">/// The basic amount of funds that must be reserved for a local asset.</span>
+		<span class="attribute">#[<span class="ident">pallet::constant</span>]</span>
+		<span class="kw">type</span> <span class="ident">LocalAssetDeposit</span>: <span class="ident">Get</span><span class="op">&lt;</span><span class="ident">DepositBalanceOf</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+
+		<span class="kw">type</span> <span class="ident">WeightInfo</span>: <span class="ident">WeightInfo</span>;
 	}
 
 	<span class="doccomment">/// An error that can occur while executing the mapping pallet&#39;s logic.</span>
@@ -284,81 +896,473 @@
 		<span class="ident">ErrorCreatingAsset</span>,
 		<span class="ident">AssetAlreadyExists</span>,
 		<span class="ident">AssetDoesNotExist</span>,
+		<span class="ident">TooLowNumAssetsWeightHint</span>,
+		<span class="ident">LocalAssetLimitReached</span>,
+		<span class="ident">ErrorDestroyingAsset</span>,
+		<span class="ident">NotSufficientDeposit</span>,
+		<span class="ident">NonExistentLocalAsset</span>,
 	}
 
 	<span class="attribute">#[<span class="ident">pallet::event</span>]</span>
 	<span class="attribute">#[<span class="ident">pallet::generate_deposit</span>(<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">deposit_event</span>)]</span>
 	<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> {
-		<span class="ident">AssetRegistered</span>(<span class="ident">T::AssetId</span>, <span class="ident">T::AssetType</span>, <span class="ident">T::AssetRegistrarMetadata</span>),
-		<span class="ident">UnitsPerSecondChanged</span>(<span class="ident">T::AssetId</span>, <span class="ident">u128</span>),
+		<span class="doccomment">/// New asset with the asset manager is registered</span>
+		<span class="ident">ForeignAssetRegistered</span> {
+			<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">asset</span>: <span class="ident">T::ForeignAssetType</span>,
+			<span class="ident">metadata</span>: <span class="ident">T::AssetRegistrarMetadata</span>,
+		},
+		<span class="doccomment">/// Changed the amount of units we are charging per execution second for a given asset</span>
+		<span class="ident">UnitsPerSecondChanged</span> {
+			<span class="ident">asset_type</span>: <span class="ident">T::ForeignAssetType</span>,
+			<span class="ident">units_per_second</span>: <span class="ident">u128</span>,
+		},
+		<span class="doccomment">/// Changed the xcm type mapping for a given asset id</span>
+		<span class="ident">ForeignAssetTypeChanged</span> {
+			<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">new_asset_type</span>: <span class="ident">T::ForeignAssetType</span>,
+		},
+		<span class="doccomment">/// Removed all information related to an assetId</span>
+		<span class="ident">ForeignAssetRemoved</span> {
+			<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">asset_type</span>: <span class="ident">T::ForeignAssetType</span>,
+		},
+		<span class="doccomment">/// Supported asset type for fee payment removed</span>
+		<span class="ident">SupportedAssetRemoved</span> { <span class="ident">asset_type</span>: <span class="ident">T::ForeignAssetType</span> },
+		<span class="doccomment">/// Local asset was created</span>
+		<span class="ident">LocalAssetRegistered</span> {
+			<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">creator</span>: <span class="ident">T::AccountId</span>,
+			<span class="ident">owner</span>: <span class="ident">T::AccountId</span>,
+		},
+		<span class="doccomment">/// Removed all information related to an assetId and destroyed asset</span>
+		<span class="ident">ForeignAssetDestroyed</span> {
+			<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">asset_type</span>: <span class="ident">T::ForeignAssetType</span>,
+		},
+		<span class="doccomment">/// Removed all information related to an assetId and destroyed asset</span>
+		<span class="ident">LocalAssetDestroyed</span> { <span class="ident">asset_id</span>: <span class="ident">T::AssetId</span> },
 	}
 
-	<span class="doccomment">/// Stores the asset TYPE</span>
+	<span class="doccomment">/// Mapping from an asset id to asset type.</span>
+	<span class="doccomment">/// This is mostly used when receiving transaction specifying an asset directly,</span>
+	<span class="doccomment">/// like transferring an asset from this chain to another.</span>
 	<span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
 	<span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">asset_id_type</span>)]</span>
-	<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">AssetIdType</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Blake2_128Concat</span>, <span class="ident">T::AssetId</span>, <span class="ident">T::AssetType</span><span class="op">&gt;</span>;
+	<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">AssetIdType</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span>
+		<span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Blake2_128Concat</span>, <span class="ident">T::AssetId</span>, <span class="ident">T::ForeignAssetType</span><span class="op">&gt;</span>;
 
-	<span class="comment">// Stores the units per second. Not all assets might contain units per second, hence the</span>
-	<span class="comment">// different storage</span>
+	<span class="doccomment">/// Reverse mapping of AssetIdType. Mapping from an asset type to an asset id.</span>
+	<span class="doccomment">/// This is mostly used when receiving a multilocation XCM message to retrieve</span>
+	<span class="doccomment">/// the corresponding asset in which tokens should me minted.</span>
 	<span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
-	<span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">asset_id_units_per_second</span>)]</span>
-	<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">AssetIdUnitsPerSecond</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Blake2_128Concat</span>, <span class="ident">T::AssetId</span>, <span class="ident">u128</span><span class="op">&gt;</span>;
+	<span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">asset_type_id</span>)]</span>
+	<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">AssetTypeId</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span>
+		<span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Blake2_128Concat</span>, <span class="ident">T::ForeignAssetType</span>, <span class="ident">T::AssetId</span><span class="op">&gt;</span>;
+
+	<span class="doccomment">/// Stores the units per second for local execution for a AssetType.</span>
+	<span class="doccomment">/// This is used to know how to charge for XCM execution in a particular</span>
+	<span class="doccomment">/// asset</span>
+	<span class="doccomment">/// Not all assets might contain units per second, hence the different storage</span>
+	<span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+	<span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">asset_type_units_per_second</span>)]</span>
+	<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">AssetTypeUnitsPerSecond</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span>
+		<span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Blake2_128Concat</span>, <span class="ident">T::ForeignAssetType</span>, <span class="ident">u128</span><span class="op">&gt;</span>;
+
+	<span class="doccomment">/// Stores the counter of the number of local assets that have been</span>
+	<span class="doccomment">/// created so far</span>
+	<span class="doccomment">/// This value can be used to salt the creation of an assetId, e.g.,</span>
+	<span class="doccomment">/// by hashing it. This is particularly useful for cases like moonbeam</span>
+	<span class="doccomment">/// where letting users choose their assetId would result in collision</span>
+	<span class="doccomment">/// in the evm side.</span>
+	<span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+	<span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">local_asset_counter</span>)]</span>
+	<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LocalAssetCounter</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">StorageValue</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u128</span>, <span class="ident">ValueQuery</span><span class="op">&gt;</span>;
+
+	<span class="doccomment">/// Local asset deposits, a mapping from assetId to a struct</span>
+	<span class="doccomment">/// holding the creator (from which the deposit was reserved) and</span>
+	<span class="doccomment">/// the deposit amount</span>
+	<span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+	<span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">local_asset_deposit</span>)]</span>
+	<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LocalAssetDeposit</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span>
+		<span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Blake2_128Concat</span>, <span class="ident">T::AssetId</span>, <span class="ident">AssetInfo</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+
+	<span class="comment">// Supported fee asset payments</span>
+	<span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+	<span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">supported_fee_payment_assets</span>)]</span>
+	<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">SupportedFeePaymentAssets</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span>
+		<span class="ident">StorageValue</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T::ForeignAssetType</span><span class="op">&gt;</span>, <span class="ident">ValueQuery</span><span class="op">&gt;</span>;
 
 	<span class="attribute">#[<span class="ident">pallet::call</span>]</span>
 	<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
 		<span class="doccomment">/// Register new asset with the asset manager</span>
-		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="number">0</span>)]</span>
-		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_asset</span>(
+		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="ident">T::WeightInfo::register_foreign_asset</span>())]</span>
+		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_foreign_asset</span>(
 			<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-			<span class="ident">asset</span>: <span class="ident">T::AssetType</span>,
+			<span class="ident">asset</span>: <span class="ident">T::ForeignAssetType</span>,
 			<span class="ident">metadata</span>: <span class="ident">T::AssetRegistrarMetadata</span>,
 			<span class="ident">min_amount</span>: <span class="ident">T::Balance</span>,
-		) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResult</span> {
-			<span class="ident">T::AssetModifierOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
+			<span class="ident">is_sufficient</span>: <span class="ident">bool</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="ident">T::ForeignAssetModifierOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
 
 			<span class="kw">let</span> <span class="ident">asset_id</span>: <span class="ident">T::AssetId</span> <span class="op">=</span> <span class="ident">asset</span>.<span class="ident">clone</span>().<span class="ident">into</span>();
 			<span class="macro">ensure!</span>(
 				<span class="ident">AssetIdType</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="kw-2">&amp;</span><span class="ident">asset_id</span>).<span class="ident">is_none</span>(),
 				<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::AssetAlreadyExists</span>
 			);
-			<span class="ident">T::AssetRegistrar::create_asset</span>(<span class="ident">asset_id</span>, <span class="ident">min_amount</span>, <span class="ident">metadata</span>.<span class="ident">clone</span>())
-				.<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::ErrorCreatingAsset</span>)<span class="question-mark">?</span>;
+			<span class="ident">T::AssetRegistrar::create_foreign_asset</span>(
+				<span class="ident">asset_id</span>,
+				<span class="ident">min_amount</span>,
+				<span class="ident">metadata</span>.<span class="ident">clone</span>(),
+				<span class="ident">is_sufficient</span>,
+			)
+			.<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::ErrorCreatingAsset</span>)<span class="question-mark">?</span>;
 
 			<span class="ident">AssetIdType</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="kw-2">&amp;</span><span class="ident">asset_id</span>, <span class="kw-2">&amp;</span><span class="ident">asset</span>);
+			<span class="ident">AssetTypeId</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="kw-2">&amp;</span><span class="ident">asset</span>, <span class="kw-2">&amp;</span><span class="ident">asset_id</span>);
 
-			<span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::AssetRegistered</span>(<span class="ident">asset_id</span>, <span class="ident">asset</span>, <span class="ident">metadata</span>));
+			<span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::ForeignAssetRegistered</span> {
+				<span class="ident">asset_id</span>,
+				<span class="ident">asset</span>,
+				<span class="ident">metadata</span>,
+			});
 			<span class="prelude-val">Ok</span>(())
 		}
 
-		<span class="doccomment">/// Change the amount of units we are charging per execution second for a given AssetId</span>
-		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="number">0</span>)]</span>
+		<span class="doccomment">/// Change the amount of units we are charging per execution second</span>
+		<span class="doccomment">/// for a given ForeignAssetType</span>
+		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="ident">T::WeightInfo::set_asset_units_per_second</span>(<span class="kw-2">*</span><span class="ident">num_assets_weight_hint</span>))]</span>
 		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_asset_units_per_second</span>(
 			<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-			<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">asset_type</span>: <span class="ident">T::ForeignAssetType</span>,
 			<span class="ident">units_per_second</span>: <span class="ident">u128</span>,
-		) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResult</span> {
-			<span class="ident">T::AssetModifierOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
+			<span class="ident">num_assets_weight_hint</span>: <span class="ident">u32</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="ident">T::ForeignAssetModifierOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
 
 			<span class="macro">ensure!</span>(
-				<span class="ident">AssetIdType</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="kw-2">&amp;</span><span class="ident">asset_id</span>).<span class="ident">is_some</span>(),
+				<span class="ident">AssetTypeId</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>).<span class="ident">is_some</span>(),
 				<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::AssetDoesNotExist</span>
 			);
 
-			<span class="ident">AssetIdUnitsPerSecond</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="kw-2">&amp;</span><span class="ident">asset_id</span>, <span class="kw-2">&amp;</span><span class="ident">units_per_second</span>);
+			<span class="comment">// Grab supported assets</span>
+			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">supported_assets</span> <span class="op">=</span> <span class="ident">SupportedFeePaymentAssets</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>();
 
-			<span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::UnitsPerSecondChanged</span>(<span class="ident">asset_id</span>, <span class="ident">units_per_second</span>));
+			<span class="macro">ensure!</span>(
+				<span class="ident">num_assets_weight_hint</span> <span class="op">&gt;</span><span class="op">=</span> (<span class="ident">supported_assets</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>),
+				<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::TooLowNumAssetsWeightHint</span>
+			);
+
+			<span class="comment">// Only if the asset is not supported we need to push it</span>
+			<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">index</span>) <span class="op">=</span> <span class="ident">supported_assets</span>.<span class="ident">binary_search</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>) {
+				<span class="ident">supported_assets</span>.<span class="ident">insert</span>(<span class="ident">index</span>, <span class="ident">asset_type</span>.<span class="ident">clone</span>());
+				<span class="ident">SupportedFeePaymentAssets</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="ident">supported_assets</span>);
+			}
+
+			<span class="ident">AssetTypeUnitsPerSecond</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>, <span class="kw-2">&amp;</span><span class="ident">units_per_second</span>);
+
+			<span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::UnitsPerSecondChanged</span> {
+				<span class="ident">asset_type</span>,
+				<span class="ident">units_per_second</span>,
+			});
+			<span class="prelude-val">Ok</span>(())
+		}
+
+		<span class="doccomment">/// Change the xcm type mapping for a given assetId</span>
+		<span class="doccomment">/// We also change this if the previous units per second where pointing at the old</span>
+		<span class="doccomment">/// assetType</span>
+		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="ident">T::WeightInfo::change_existing_asset_type</span>(<span class="kw-2">*</span><span class="ident">num_assets_weight_hint</span>))]</span>
+		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">change_existing_asset_type</span>(
+			<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+			<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">new_asset_type</span>: <span class="ident">T::ForeignAssetType</span>,
+			<span class="ident">num_assets_weight_hint</span>: <span class="ident">u32</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="ident">T::ForeignAssetModifierOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Grab supported assets</span>
+			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">supported_assets</span> <span class="op">=</span> <span class="ident">SupportedFeePaymentAssets</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>();
+
+			<span class="macro">ensure!</span>(
+				<span class="ident">num_assets_weight_hint</span> <span class="op">&gt;</span><span class="op">=</span> (<span class="ident">supported_assets</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>),
+				<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::TooLowNumAssetsWeightHint</span>
+			);
+
+			<span class="kw">let</span> <span class="ident">previous_asset_type</span> <span class="op">=</span>
+				<span class="ident">AssetIdType</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="kw-2">&amp;</span><span class="ident">asset_id</span>).<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::AssetDoesNotExist</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Insert new asset type info</span>
+			<span class="ident">AssetIdType</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="kw-2">&amp;</span><span class="ident">asset_id</span>, <span class="kw-2">&amp;</span><span class="ident">new_asset_type</span>);
+			<span class="ident">AssetTypeId</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="kw-2">&amp;</span><span class="ident">new_asset_type</span>, <span class="kw-2">&amp;</span><span class="ident">asset_id</span>);
+
+			<span class="comment">// Remove previous asset type info</span>
+			<span class="ident">AssetTypeId</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::remove</span>(<span class="kw-2">&amp;</span><span class="ident">previous_asset_type</span>);
+
+			<span class="comment">// Change AssetTypeUnitsPerSecond</span>
+			<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">units</span>) <span class="op">=</span> <span class="ident">AssetTypeUnitsPerSecond</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="kw-2">&amp;</span><span class="ident">previous_asset_type</span>) {
+				<span class="comment">// Only if the old asset is supported we need to remove it</span>
+				<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">index</span>) <span class="op">=</span> <span class="ident">supported_assets</span>.<span class="ident">binary_search</span>(<span class="kw-2">&amp;</span><span class="ident">previous_asset_type</span>) {
+					<span class="ident">supported_assets</span>.<span class="ident">remove</span>(<span class="ident">index</span>);
+				}
+
+				<span class="comment">// Only if the new asset is not supported we need to push it</span>
+				<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">index</span>) <span class="op">=</span> <span class="ident">supported_assets</span>.<span class="ident">binary_search</span>(<span class="kw-2">&amp;</span><span class="ident">new_asset_type</span>) {
+					<span class="ident">supported_assets</span>.<span class="ident">insert</span>(<span class="ident">index</span>, <span class="ident">new_asset_type</span>.<span class="ident">clone</span>());
+				}
+
+				<span class="comment">// Insert supported fee payment assets</span>
+				<span class="ident">SupportedFeePaymentAssets</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="ident">supported_assets</span>);
+
+				<span class="comment">// Remove previous asset type info</span>
+				<span class="ident">AssetTypeUnitsPerSecond</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::remove</span>(<span class="kw-2">&amp;</span><span class="ident">previous_asset_type</span>);
+				<span class="ident">AssetTypeUnitsPerSecond</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="kw-2">&amp;</span><span class="ident">new_asset_type</span>, <span class="ident">units</span>);
+			}
+
+			<span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::ForeignAssetTypeChanged</span> {
+				<span class="ident">asset_id</span>,
+				<span class="ident">new_asset_type</span>,
+			});
+			<span class="prelude-val">Ok</span>(())
+		}
+
+		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="ident">T::WeightInfo::remove_supported_asset</span>(<span class="kw-2">*</span><span class="ident">num_assets_weight_hint</span>))]</span>
+		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_supported_asset</span>(
+			<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+			<span class="ident">asset_type</span>: <span class="ident">T::ForeignAssetType</span>,
+			<span class="ident">num_assets_weight_hint</span>: <span class="ident">u32</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="ident">T::ForeignAssetModifierOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Grab supported assets</span>
+			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">supported_assets</span> <span class="op">=</span> <span class="ident">SupportedFeePaymentAssets</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>();
+
+			<span class="macro">ensure!</span>(
+				<span class="ident">num_assets_weight_hint</span> <span class="op">&gt;</span><span class="op">=</span> (<span class="ident">supported_assets</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>),
+				<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::TooLowNumAssetsWeightHint</span>
+			);
+
+			<span class="comment">// Only if the old asset is supported we need to remove it</span>
+			<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">index</span>) <span class="op">=</span> <span class="ident">supported_assets</span>.<span class="ident">binary_search</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>) {
+				<span class="ident">supported_assets</span>.<span class="ident">remove</span>(<span class="ident">index</span>);
+			}
+
+			<span class="comment">// Insert</span>
+			<span class="ident">SupportedFeePaymentAssets</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="ident">supported_assets</span>);
+
+			<span class="comment">// Remove</span>
+			<span class="ident">AssetTypeUnitsPerSecond</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::remove</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>);
+
+			<span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::SupportedAssetRemoved</span> { <span class="ident">asset_type</span> });
+			<span class="prelude-val">Ok</span>(())
+		}
+
+		<span class="doccomment">/// Remove a given assetId -&gt; assetType association</span>
+		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="ident">T::WeightInfo::remove_existing_asset_type</span>(<span class="kw-2">*</span><span class="ident">num_assets_weight_hint</span>))]</span>
+		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_existing_asset_type</span>(
+			<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+			<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">num_assets_weight_hint</span>: <span class="ident">u32</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="ident">T::ForeignAssetModifierOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Grab supported assets</span>
+			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">supported_assets</span> <span class="op">=</span> <span class="ident">SupportedFeePaymentAssets</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>();
+
+			<span class="macro">ensure!</span>(
+				<span class="ident">num_assets_weight_hint</span> <span class="op">&gt;</span><span class="op">=</span> (<span class="ident">supported_assets</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>),
+				<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::TooLowNumAssetsWeightHint</span>
+			);
+
+			<span class="kw">let</span> <span class="ident">asset_type</span> <span class="op">=</span>
+				<span class="ident">AssetIdType</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="kw-2">&amp;</span><span class="ident">asset_id</span>).<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::AssetDoesNotExist</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Remove from AssetIdType</span>
+			<span class="ident">AssetIdType</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::remove</span>(<span class="kw-2">&amp;</span><span class="ident">asset_id</span>);
+			<span class="comment">// Remove from AssetTypeId</span>
+			<span class="ident">AssetTypeId</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::remove</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>);
+			<span class="comment">// Remove previous asset type units per second</span>
+			<span class="ident">AssetTypeUnitsPerSecond</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::remove</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>);
+
+			<span class="comment">// Only if the old asset is supported we need to remove it</span>
+			<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">index</span>) <span class="op">=</span> <span class="ident">supported_assets</span>.<span class="ident">binary_search</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>) {
+				<span class="ident">supported_assets</span>.<span class="ident">remove</span>(<span class="ident">index</span>);
+				<span class="comment">// Insert</span>
+				<span class="ident">SupportedFeePaymentAssets</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="ident">supported_assets</span>);
+			}
+
+			<span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::ForeignAssetRemoved</span> {
+				<span class="ident">asset_id</span>,
+				<span class="ident">asset_type</span>,
+			});
+			<span class="prelude-val">Ok</span>(())
+		}
+
+		<span class="doccomment">/// Register a new local asset</span>
+		<span class="doccomment">/// No information is stored in this pallet about the local asset</span>
+		<span class="doccomment">/// The reason is that we dont need to hold a mapping between the multilocation</span>
+		<span class="doccomment">/// and the local asset, as this conversion is deterministic</span>
+		<span class="doccomment">/// Further, we dont allow xcm fee payment in local assets</span>
+		<span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="ident">T::WeightInfo::register_local_asset</span>())]</span>
+		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_local_asset</span>(
+			<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+			<span class="ident">creator</span>: <span class="ident">T::AccountId</span>,
+			<span class="ident">owner</span>: <span class="ident">T::AccountId</span>,
+			<span class="ident">is_sufficient</span>: <span class="ident">bool</span>,
+			<span class="ident">min_balance</span>: <span class="ident">T::Balance</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="ident">T::LocalAssetModifierOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Get the deposit amount</span>
+			<span class="kw">let</span> <span class="ident">deposit</span> <span class="op">=</span> <span class="ident">T::LocalAssetDeposit::get</span>();
+
+			<span class="comment">// Verify we can reserve</span>
+			<span class="ident">T::Currency::can_reserve</span>(<span class="kw-2">&amp;</span><span class="ident">creator</span>, <span class="ident">deposit</span>)
+				.<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="bool-val">true</span>)
+				.<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::NotSufficientDeposit</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Read Local Asset Counter</span>
+			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">local_asset_counter</span> <span class="op">=</span> <span class="ident">LocalAssetCounter</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>();
+
+			<span class="comment">// Create the assetId with LocalAssetIdCreator</span>
+			<span class="kw">let</span> <span class="ident">asset_id</span> <span class="op">=</span>
+				<span class="ident">T::LocalAssetIdCreator::create_asset_id_from_metadata</span>(<span class="ident">local_asset_counter</span>);
+
+			<span class="comment">// Increment the counter</span>
+			<span class="ident">local_asset_counter</span> <span class="op">=</span> <span class="ident">local_asset_counter</span>
+				.<span class="ident">checked_add</span>(<span class="number">1</span>)
+				.<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::LocalAssetLimitReached</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Create local asset</span>
+			<span class="ident">T::AssetRegistrar::create_local_asset</span>(
+				<span class="ident">asset_id</span>,
+				<span class="ident">creator</span>.<span class="ident">clone</span>(),
+				<span class="ident">min_balance</span>,
+				<span class="ident">is_sufficient</span>,
+				<span class="ident">owner</span>.<span class="ident">clone</span>(),
+			)
+			.<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::ErrorCreatingAsset</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Reserve the deposit, we verified we can do this</span>
+			<span class="ident">T::Currency::reserve</span>(<span class="kw-2">&amp;</span><span class="ident">creator</span>, <span class="ident">deposit</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Update assetInfo</span>
+			<span class="ident">LocalAssetDeposit</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::insert</span>(
+				<span class="ident">asset_id</span>,
+				<span class="ident">AssetInfo</span> {
+					<span class="ident">creator</span>: <span class="ident">creator</span>.<span class="ident">clone</span>(),
+					<span class="ident">deposit</span>,
+				},
+			);
+
+			<span class="comment">// Update local asset counter</span>
+			<span class="ident">LocalAssetCounter</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="ident">local_asset_counter</span>);
+
+			<span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::LocalAssetRegistered</span> {
+				<span class="ident">asset_id</span>,
+				<span class="ident">creator</span>,
+				<span class="ident">owner</span>,
+			});
+			<span class="prelude-val">Ok</span>(())
+		}
+
+		<span class="doccomment">/// Destroy a given foreign assetId</span>
+		<span class="doccomment">/// The weight in this case is the one returned by the trait</span>
+		<span class="doccomment">/// plus the db writes and reads from removing all the associated</span>
+		<span class="doccomment">/// data</span>
+		<span class="attribute">#[<span class="ident">pallet::weight</span>({
+			<span class="kw">let</span> <span class="ident">dispatch_info_weight</span> <span class="op">=</span> <span class="ident">T::AssetRegistrar::destroy_asset_dispatch_info_weight</span>(
+				<span class="kw-2">*</span><span class="ident">asset_id</span>, <span class="kw-2">*</span><span class="ident">destroy_asset_witness</span>
+			);
+			<span class="ident">T::WeightInfo::remove_existing_asset_type</span>(<span class="kw-2">*</span><span class="ident">num_assets_weight_hint</span>)
+			.<span class="ident">saturating_add</span>(<span class="ident">dispatch_info_weight</span>)
+		})]</span>
+		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">destroy_foreign_asset</span>(
+			<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+			<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">destroy_asset_witness</span>: <span class="ident">T::AssetDestroyWitness</span>,
+			<span class="ident">num_assets_weight_hint</span>: <span class="ident">u32</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="ident">T::ForeignAssetModifierOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
+
+			<span class="ident">T::AssetRegistrar::destroy_foreign_asset</span>(<span class="ident">asset_id</span>, <span class="ident">destroy_asset_witness</span>)
+				.<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::ErrorDestroyingAsset</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Grab supported assets</span>
+			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">supported_assets</span> <span class="op">=</span> <span class="ident">SupportedFeePaymentAssets</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>();
+
+			<span class="macro">ensure!</span>(
+				<span class="ident">num_assets_weight_hint</span> <span class="op">&gt;</span><span class="op">=</span> (<span class="ident">supported_assets</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>),
+				<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::TooLowNumAssetsWeightHint</span>
+			);
+
+			<span class="kw">let</span> <span class="ident">asset_type</span> <span class="op">=</span>
+				<span class="ident">AssetIdType</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="kw-2">&amp;</span><span class="ident">asset_id</span>).<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::AssetDoesNotExist</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Remove from AssetIdType</span>
+			<span class="ident">AssetIdType</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::remove</span>(<span class="kw-2">&amp;</span><span class="ident">asset_id</span>);
+			<span class="comment">// Remove from AssetTypeId</span>
+			<span class="ident">AssetTypeId</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::remove</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>);
+			<span class="comment">// Remove previous asset type units per second</span>
+			<span class="ident">AssetTypeUnitsPerSecond</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::remove</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>);
+
+			<span class="comment">// Only if the old asset is supported we need to remove it</span>
+			<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">index</span>) <span class="op">=</span> <span class="ident">supported_assets</span>.<span class="ident">binary_search</span>(<span class="kw-2">&amp;</span><span class="ident">asset_type</span>) {
+				<span class="ident">supported_assets</span>.<span class="ident">remove</span>(<span class="ident">index</span>);
+				<span class="comment">// Insert</span>
+				<span class="ident">SupportedFeePaymentAssets</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="ident">supported_assets</span>);
+			}
+
+			<span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::ForeignAssetDestroyed</span> {
+				<span class="ident">asset_id</span>,
+				<span class="ident">asset_type</span>,
+			});
+			<span class="prelude-val">Ok</span>(())
+		}
+
+		<span class="doccomment">/// Destroy a given local assetId</span>
+		<span class="doccomment">/// We do not store anything related to local assets in this pallet other than the counter</span>
+		<span class="doccomment">/// and the counter is not used for destroying the asset, so no additional db reads/writes</span>
+		<span class="doccomment">/// to be counter here</span>
+		<span class="attribute">#[<span class="ident">pallet::weight</span>({
+			<span class="ident">T::AssetRegistrar::destroy_asset_dispatch_info_weight</span>(
+				<span class="kw-2">*</span><span class="ident">asset_id</span>, <span class="kw-2">*</span><span class="ident">destroy_asset_witness</span>
+			)
+			.<span class="ident">saturating_add</span>(<span class="ident">T::DbWeight::get</span>().<span class="ident">reads_writes</span>(<span class="number">2</span>, <span class="number">2</span>))
+		})]</span>
+		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">destroy_local_asset</span>(
+			<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+			<span class="ident">asset_id</span>: <span class="ident">T::AssetId</span>,
+			<span class="ident">destroy_asset_witness</span>: <span class="ident">T::AssetDestroyWitness</span>,
+		) -&gt; <span class="ident">DispatchResult</span> {
+			<span class="ident">T::LocalAssetModifierOrigin::ensure_origin</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Get asset creator and deposit amount</span>
+			<span class="kw">let</span> <span class="ident">asset_info</span> <span class="op">=</span>
+				<span class="ident">LocalAssetDeposit</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="ident">asset_id</span>).<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::NonExistentLocalAsset</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Destroy local asset</span>
+			<span class="ident">T::AssetRegistrar::destroy_local_asset</span>(<span class="ident">asset_id</span>, <span class="ident">destroy_asset_witness</span>)
+				.<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::ErrorDestroyingAsset</span>)<span class="question-mark">?</span>;
+
+			<span class="comment">// Unreserve deposit</span>
+			<span class="ident">T::Currency::unreserve</span>(<span class="kw-2">&amp;</span><span class="ident">asset_info</span>.<span class="ident">creator</span>, <span class="ident">asset_info</span>.<span class="ident">deposit</span>);
+
+			<span class="comment">// Remove asset info</span>
+			<span class="ident">LocalAssetDeposit</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::remove</span>(<span class="ident">asset_id</span>);
+
+			<span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::LocalAssetDestroyed</span> { <span class="ident">asset_id</span> });
 			<span class="prelude-val">Ok</span>(())
 		}
 	}
 
 	<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
 		<span class="doccomment">/// The account ID of AssetManager</span>
-		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">account_id</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T::AccountId</span> {
+		<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">account_id</span>() -&gt; <span class="ident">T::AccountId</span> {
 			<span class="ident">PALLET_ID</span>.<span class="ident">into_account</span>()
 		}
 	}
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="pallet_asset_manager" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="pallet_asset_manager" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (3b348d932 2022-02-19)" ></div>
 </body></html>
